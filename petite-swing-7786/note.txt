@@ -2,6 +2,9 @@ font-family: 'amerigo-bt-roman', sans-serif;
 npm i react-router-dom@6 
 npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
 npm i @chakra-ui/icons
+         npm install react-owl-carousel2
+
+
 navbar
  w={{
           sm: "700px",
@@ -44,3 +47,4 @@ proximaparanova
             fontWeight: 400,
             color: "#4c525a",
           }}
+
