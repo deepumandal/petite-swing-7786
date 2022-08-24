@@ -1,0 +1,46 @@
+font-family: 'amerigo-bt-roman', sans-serif; 
+npm i react-router-dom@6 
+npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
+npm i @chakra-ui/icons
+navbar
+ w={{
+          sm: "700px",
+          md: "900px",
+          lg: "1050px",
+          base: "80%",
+        }}
+home
+ w={{
+      sm: "700px",
+        md: "900px",
+        lg: "1100px",
+        base: "90%",
+      }}
+text
+fontSize={{
+          sm : "17px",
+          base : "15px"
+        }}
+        lineHeight={{
+          sm : "30px",
+          base : "24px"
+        }}
+        fontWeight={600}
+        color={"#4c525a"}
+        w={{base : "100%", sm : "80%"}}
+
+
+proximaparanova
+         fontSize={{
+            sm: "39px",
+            base: "30px",
+          }}
+          lineHeight={{
+            sm: "57px",
+            base: "40px",
+          }}
+          sx={{
+            fontFamily: "'amerigo-bt-roman', sans-serif",
+            fontWeight: 400,
+            color: "#4c525a",
+          }}
