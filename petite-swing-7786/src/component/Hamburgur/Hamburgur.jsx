@@ -1,30 +1,39 @@
+import React, { useState } from "react";
 import {
-  Box,
-  Flex,
-  Heading,
+  Drawer,
+  DrawerBody,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  useDisclosure,
+  RadioGroup,
+  Stack,
+  Radio,
+  Button,
+  Input,
   Image,
-  Link,
-  Spacer,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  Text,
-  useMediaQuery,
-  VStack,
   Accordion,
   AccordionItem,
   AccordionButton,
+  Flex,
   AccordionPanel,
+  Heading,
+  Text,
+  Box,
   AccordionIcon,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { ArrowForwardIcon, ChevronRightIcon } from "@chakra-ui/icons";
+import {
+  ArrowForwardIcon,
+  ChevronRightIcon,
+  HamburgerIcon,
+} from "@chakra-ui/icons";
+import Bonsaicategory from "../Bonsaicategory.jsx/Bonsaicategory";
 
-const Virticleclicktabs = () => {
-  const [ismobilescreen] = useMediaQuery("(max-width: 480px)");
-
+const Hamburgur = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = React.useRef();
   const tabshere = [
     {
       title: "Proposals",
@@ -125,10 +134,162 @@ const Virticleclicktabs = () => {
   ];
 
   const [selected, setSelected] = useState(null);
+
   return (
     <>
-      {ismobilescreen ? (
-        <Accordion allowToggle mt={"60px"} defaultIndex={[0]} >
+      <HamburgerIcon
+        ref={btnRef}
+        w={6}
+        h={6}
+        colorscheme="teal"
+        onClick={onOpen}
+      />
+      <Drawer
+        size={"lg"}
+        isOpen={isOpen}
+        placement="right"
+        onClose={onClose}
+        finalFocusRef={btnRef}
+      >
+        <DrawerOverlay />
+        <DrawerContent p={4} w={"100px"}>
+          <DrawerHeader >
+            <Image
+              src={
+                "https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/5e5fd7c602ca7caaf7feb674_logo%20copy.svg"
+              }
+            />
+            <DrawerCloseButton  mt={"20px"} mr={"20px"} />
+          </DrawerHeader>
+
+          <DrawerBody
+            display={"flex"}
+            justifyContent={"center"}
+            padding={"0px"}
+          >
+            <Accordion allowToggle p={4} mt={"60px"} w={"110%"}>
+              <AccordionItem marginTop={"none"} w={"100%"} m={"auto"}>
+                <h2>
+                  <AccordionButton
+                    // border={"1px"}
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    fontSize={{
+                      sm: "21px",
+                    }}
+                    lineHeight={{
+                      sm: "34px",
+                    }}
+                    alignItems={"center"}
+                    color={"#4c525a"}
+                    fontWeight={500}
+                    letterSpacing={"0.9px"}
+                    fontFamily={"sans-serif"}
+                  >
+                    <Box flex="1" textAlign="left">
+                      Product
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                  <Bonsaicategory />
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem marginTop={"none"} w={"100%"} m={"auto"}>
+                <h2>
+                  <AccordionButton
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    fontSize={{
+                      sm: "21px",
+                    }}
+                    lineHeight={{
+                      sm: "34px",
+                    }}
+                    alignItems={"center"}
+                    color={"#4c525a"}
+                    fontWeight={500}
+                    letterSpacing={"0.9px"}
+                    fontFamily={"sans-serif"}
+                  >
+                    <Box flex="1" textAlign="left">
+                      Templates
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </h2>
+                <AccordionPanel pb={4}>
+                <ul>
+        {
+          tabshere.map((item,i)=>{
+            return  <Flex key={i}
+             alignItems={"center"}
+           >
+             <Image
+               w={"15px"}
+               m={"9px"}
+               src={item.imgurl}
+             />
+             {item.title}
+           </Flex>
+          })
+        }
+        </ul>
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem marginTop={"none"} w={"100%"} m={"auto"}>
+                <h2>
+                  <AccordionButton
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    fontSize={{
+                      sm: "21px",
+                    }}
+                    lineHeight={{
+                      sm: "34px",
+                    }}
+                    alignItems={"center"}
+                    color={"#4c525a"}
+                    fontWeight={500}
+                    letterSpacing={"0.9px"}
+                    fontFamily={"sans-serif"}
+                  >
+                    <Box flex="1" textAlign="left">
+                      Pricing
+                    </Box>
+                  </AccordionButton>
+                </h2>
+              </AccordionItem>
+
+              <AccordionItem marginTop={"none"} w={"100%"} m={"auto"}>
+                <h2>
+                  <AccordionButton
+                    display={"flex"}
+                    justifyContent={"space-between"}
+                    fontSize={{
+                      sm: "21px",
+                    }}
+                    lineHeight={{
+                      sm: "34px",
+                    }}
+                    alignItems={"center"}
+                    color={"#4c525a"}
+                    fontWeight={500}
+                    letterSpacing={"0.9px"}
+                    fontFamily={"sans-serif"}
+                  >
+                    <Box flex="1" textAlign="left">
+                      Reviews
+                    </Box>
+                  </AccordionButton>
+                </h2>
+              </AccordionItem>
+            </Accordion>
+
+            {/* <Accordion mt={"60px"} >
           {tabshere.map((item, i) => {
             return (
               <AccordionItem key={i} marginTop={"none"} w={"90%"} m={"auto"}>
@@ -207,112 +368,12 @@ fontWeight={600}
               </AccordionItem>
             );
           })}
-        </Accordion>
-      ) : (
-        <Tabs
-          variant="enclosed"
-          display={"flex"}
-          w={{
-            sm: "700px",
-            md: "1000px",
-            lg: "1000px",
-            base: "90%",
-          }}
-          m={"auto"}
-          mt={"90px"}
-        >
-          <TabList display={"flex"} w={"600px"} flexDir={"column"}>
-            {tabshere.map((item, i) => {
-              return (
-                <Tab key={i}
-                  onClick={() => setSelected(i)}
-                  display={"flex"}
-                  justifyContent={"space-between"}
-                  fontSize={{
-                    sm: "21px",
-                  }}
-                  lineHeight={{
-                    sm: "34px",
-                  }}
-                  color={"#4c525a"}
-                  fontWeight={500}
-                  letterSpacing={"0.9px"}
-                  fontFamily={"sans-serif"}
-                >
-                  <Flex>
-                    <Image
-                      w={"15px"}
-                      m={"9px"}
-                      src={selected !== i ? item.imgurl : item.focus}
-                    />
-                    {item.title}
-                  </Flex>
-                  <ChevronRightIcon color={"#4c525a"} />
-                </Tab>
-              );
-            })}
-          </TabList>
-
-          <TabPanels>
-            {tabshere.map((item, i) => {
-              return (
-                <TabPanel key={i}>
-                  <VStack >
-                    <Box textAlign={"left"}>
-                      <Heading
-                        fontSize={{
-                          sm: "32px",
-                        }}
-                        lineHeight={{
-                          sm: "45px",
-                        }}
-                        color={"#4c525a"}
-                        fontWeight={400}
-                      >
-                        {item.name}
-                      </Heading>
-                      <Text
-                        fontSize={{
-                          sm: "20px",
-                        }}
-                        lineHeight={{
-                          sm: "27px",
-                          base: "20px",
-                        }}
-                        color={"#4c525a"}
-                        fontWeight={300}
-                      >
-                        {item.des}
-                      </Text>
-                      <Link to="proposal">
-                        <Text
-                          fontSize={{
-                            sm: "16px",
-                          }}
-                          lineHeight={{
-                            sm: "70px",
-                          }}
-                          color={"#00a37e"}
-                          fontWeight={600}
-                        >
-                          {item.a} <ArrowForwardIcon w={"30px"} />
-                        </Text>
-                      </Link>
-                    </Box>
-
-                    <Flex>
-                      <Spacer />
-                      <Image w={"400px"} src={item.Image} />
-                    </Flex>
-                  </VStack>
-                </TabPanel>
-              );
-            })}
-          </TabPanels>
-        </Tabs>
-      )}
+        </Accordion> */}
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </>
   );
 };
 
-export default Virticleclicktabs;
+export default Hamburgur;

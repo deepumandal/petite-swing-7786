@@ -9,6 +9,7 @@ import Pricing from "./pages/Price/Pricing";
 import Reviews from "./pages/Reviews/Reviews";
 // import RequireAuth from "./Auth/RequiresAuth";
 
+
 function App() {
   return (
     <div className="App">
@@ -30,5 +31,4 @@ function App() {
     </div>
   );
 }
-
-export default App;
+export default App
