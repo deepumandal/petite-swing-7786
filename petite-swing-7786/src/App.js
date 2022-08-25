@@ -1,16 +1,17 @@
 import "./App.css";
-import Navbar from "./component/Navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
+import Navbar from "./component/Navbar/Navbar"
 import Home from "./pages/Home/Home";
 import { Login } from "./Auth/Login";
 import { Sign } from "./Auth/Sign";
+// import RequireAuth from "./Auth/RequiresAuth";
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <Navbar  />
       <Routes>
-        <Route path={"/"} element={<Home />} />
+        <Route path={"/"} element={ <Home />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/sign"} element={<Sign />} />
       </Routes>
