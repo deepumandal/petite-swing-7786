@@ -8,16 +8,17 @@ import Footer from "./component/Footer/Footer";
 import Pricing from "./pages/Price/Pricing";
 import Reviews from "./pages/Reviews/Reviews";
 import Dashboard from "./component/AppBonsai/Dashboard";
+import RequireAuth from "./Auth/RequiresAuth";
+
 
 function App() {
   return (
-    <div>
-       {/* <Dashboard/> */}
-      <Navbar />
-      
+    <div className="App">
+      {/* <Navbar /> */}
+      {/* <Dashboard/> */}
 
       <Routes>
-        <Route path={"/"} element={<Home />} />
+        <Route path={"/"} element={  <Home />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/sign"} element={<Sign />} />
         <Route path={"/pricing"} element={<Pricing />} />
@@ -33,5 +34,4 @@ function App() {
     </div>
   );
 }
-
-export default App;
+export default App

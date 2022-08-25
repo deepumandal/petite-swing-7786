@@ -30,8 +30,8 @@ const Footer = () => {
           PRODUCT
         </Text>
         <br />
-        {footProduct.map((e) => (
-          <Text
+        {footProduct.map((e,i) => (
+          <Text key={i}
             _hover={{ color: "black.500", textDecoration: "underline" }}
             fontWeight="300"
           >
@@ -48,8 +48,8 @@ const Footer = () => {
             FREE RESOURCES
           </Text>
           <br />
-          {footFreeResources1.map((e) => (
-            <Text
+          {footFreeResources1.map((e,i) => (
+            <Text key={i}
               _hover={{ color: "black.500", textDecoration: "underline" }}
               fontWeight="300"
             >
@@ -57,8 +57,8 @@ const Footer = () => {
             </Text>
           ))}
           <br />
-          {footFreeResources2.map((e) => (
-            <Text
+          {footFreeResources2.map((e,i) => (
+            <Text key={i}
               _hover={{ color: "black.500", textDecoration: "underline" }}
               fontWeight="300"
             >
@@ -75,8 +75,8 @@ const Footer = () => {
           </Text>
           <br />
           <Accordion allowMultiple>
-            {footTemplates.map((e) => (
-              <AccordionItem>
+            {footTemplates.map((e,i) => (
+              <AccordionItem key={i}>
                 <h2>
                   <AccordionButton _hover={{ background: "white" }}>
                     <Box textAlign="left">{e.head}</Box>
@@ -84,8 +84,8 @@ const Footer = () => {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel>
-                  {e.someElse.map((k) => (
-                    <Text
+                  {e.someElse.map((k,i) => (
+                    <Text key={i}
                       _hover={{
                         color: "black.500",
                         textDecoration: "underline",
@@ -110,8 +110,8 @@ const Footer = () => {
         </Text>
         <br />
 
-        {footBonsai.map((e) => (
-          <Text
+        {footBonsai.map((e,i) => (
+          <Text key={i}
             _hover={{ color: "black.500", textDecoration: "underline" }}
             fontWeight="300"
           >
