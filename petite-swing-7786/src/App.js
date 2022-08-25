@@ -7,11 +7,14 @@ import { Sign } from "./Auth/Sign";
 import Footer from "./component/Footer/Footer";
 import Pricing from "./pages/Price/Pricing";
 import Reviews from "./pages/Reviews/Reviews";
+import Dashboard from "./component/AppBonsai/Dashboard";
 
 function App() {
   return (
-    <div className="App">
+    <div>
+       {/* <Dashboard/> */}
       <Navbar />
+      
 
       <Routes>
         <Route path={"/"} element={<Home />} />
@@ -24,7 +27,8 @@ function App() {
       <br />
       <br />
       <br />
-      <Footer />
+      <Footer /> 
+      
 
     </div>
   );
