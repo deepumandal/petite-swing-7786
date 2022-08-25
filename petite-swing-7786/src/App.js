@@ -7,6 +7,7 @@ import { Sign } from "./Auth/Sign";
 import Footer from "./component/Footer/Footer";
 import Pricing from "./pages/Price/Pricing";
 import Reviews from "./pages/Reviews/Reviews";
+// import RequireAuth from "./Auth/RequiresAuth";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path={"/"} element={<Home />} />
+        <Route path={"/"} element={  <Home />} />
         <Route path={"/login"} element={<Login />} />
         <Route path={"/sign"} element={<Sign />} />
         <Route path={"/pricing"} element={<Pricing />} />
