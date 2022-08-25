@@ -8,6 +8,7 @@ import Footer from "./component/Footer/Footer";
 import Pricing from "./pages/Price/Pricing";
 import Reviews from "./pages/Reviews/Reviews";
 
+
 function App() {
   return (
     <div className="App">
@@ -29,5 +30,4 @@ function App() {
     </div>
   );
 }
-
-export default App;
+export default App
