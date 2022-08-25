@@ -1,7 +1,23 @@
-import { Box, Grid, Image, Switch, Text } from "@chakra-ui/react";
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Button,
+  Flex,
+  Grid,
+  Heading,
+  Image,
+  Link,
+  Spacer,
+  Switch,
+  Text,
+} from "@chakra-ui/react";
 import React from "react";
 import styles from "./Pricing.module.css";
-import { pricingDetails } from "./priceConstants";
+import { questions, pricingDetails } from "./priceConstants";
 import { useState } from "react";
 import Card from "./Card";
 import Cards2 from "./Cards2";
@@ -54,6 +70,7 @@ const Pricing = () => {
       <Box
         display="grid"
         gridTemplateColumns={{ lg: "repeat(3, 1fr)", md: "repeat(1, 1fr)" }}
+        gap={5}
       >
         {pricingDetails.map((e) => (
           <Card
@@ -67,10 +84,158 @@ const Pricing = () => {
         ))}
       </Box>
       <br />
-
+      <br />
+      <br />
+      <br />
       {/* straight cards */}
 
-      <Cards2 />
+      <Box w={{ lg: "80%", sm: "100%" }} m="auto">
+        <Text
+          textAlign="center"
+          fontWeight="400"
+          fontSize={{ lg: "32px", sm: "24px" }}
+          lineHeight={{ lg: "45px", sm: "34px" }}
+        >
+          Super charge your work with add-ons
+        </Text>
+        <br />
+        <br />
+        <Cards2 />
+      </Box>
+
+      {/* kachra box */}
+      <Box w={{ sm: "100%" }}>
+        <Flex
+          flexDirection={{ lg: "row", sm: "column" }}
+          flexWrap={{ sm: "wrap" }}
+          w={{
+            lg: "70%",
+            sm: "100%",
+          }}
+          bg={"#f2faff"}
+          m={"auto"}
+          mt={{
+            base: "60px",
+            sm: "90px",
+          }}
+          p={"40px"}
+          alignItems={"center"}
+          justifyContent={{
+            base: "center",
+          }}
+        >
+          <Box
+            w={{
+              sm: "70%",
+              base: "90%",
+            }}
+          >
+            <Heading
+              textAlign={"left"}
+              fontSize={{
+                base: "40px",
+                sm: "44px",
+              }}
+              lineHeight={{
+                sm: "57px",
+              }}
+              color={"#4c525a"}
+              fontWeight={400}
+            >
+              It’s{" "}
+              <span
+                style={{
+                  color: "#01b289",
+                }}
+              >
+                your{" "}
+              </span>{" "}
+              business.
+            </Heading>
+            <Heading
+              textAlign={"left"}
+              fontSize={{
+                base: "40px",
+                sm: "44px",
+              }}
+              lineHeight={{
+                sm: "57px",
+              }}
+              color={"#4c525a"}
+              fontWeight={400}
+            >
+              We’re here to help it grow.
+            </Heading>
+          </Box>
+          <Spacer />
+          <Link to="/dashboard">
+            <Button
+              bg={"#00b289"}
+              p={4}
+              m={"auto"}
+              color={"white"}
+              mt={{ base: "20px" }}
+              mr={{ sm: "20px" }}
+            >
+              GO TO DASHBOARD
+            </Button>
+          </Link>
+        </Flex>
+
+        {/* Frequenly asked questions */}
+        <br />
+        <br />
+        <br />
+        <Box w={{ lg: "50%", sm: "100" }} m="auto" p="10px 10px">
+          <Text
+            textAlign="center"
+            fontSize="24px"
+            lineHeight="36px"
+            fontWeight="700"
+            color="#00b289"
+          >
+            Frequently Asked Questions
+          </Text>
+          <br />
+          <br />
+          <Accordion allowMultiple>
+            {questions.map((e) => (
+              <AccordionItem>
+                <Box>
+                  <AccordionButton
+                    _hover={{ background: "white" }}
+                    display="flex"
+                    justifyContent="space-between"
+                  >
+                    <Text
+                      fontSize={{ lg: "24px", sm: "20px" }}
+                      lineHeight="30px"
+                      fontWeight="700"
+                      _hover={{ color: "#00b289" }}
+                    >
+                      {e.que}
+                    </Text>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </Box>
+                <AccordionPanel>
+                  <Text
+                    _hover={{
+                      color: "black.500",
+                      textDecoration: "underline",
+                    }}
+                    fontWeight="300"
+                    fontSize="16px"
+                    lineHeight="30px"
+                  >
+                    {e.ans}
+                  </Text>
+                </AccordionPanel>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </Box>
+      </Box>
     </div>
   );
 };

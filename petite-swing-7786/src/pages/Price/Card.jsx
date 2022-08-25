@@ -4,7 +4,13 @@ import { TiTick } from "react-icons/ti";
 
 const Card = ({ head, headP, rateM, rateY, ym, lists }) => {
   return (
-    <Box color="#4c525a" borderColor="lightGrey" p="20px 20px" h="100%">
+    <Box
+      color="#4c525a"
+      borderColor="lightGrey"
+      p="20px 20px"
+      h="100%"
+      boxShadow="rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px"
+    >
       <Text fontSize="24px" fontWeight="600" lineHeight="34px">
         {head}
       </Text>
