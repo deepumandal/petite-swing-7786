@@ -21,6 +21,7 @@ import { loginAPI } from "../Store/auth/auth.actions";
 export const Login = () => {
   const onLoginSuccess = (res) => {
     // console.log(res);
+    navigate("/");
   };
 
   const onLoginError = (err) => {
@@ -31,16 +32,17 @@ export const Login = () => {
     "175168483203-8td0h9fbnrfjfpj4uf1rpc5j79kukgfm.apps.googleusercontent.com";
 
   const dispatch = useDispatch();
-  const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
+  const [email, setemail] = useState("");
   const navigate = useNavigate();
-  const handlesubmit = () => {
+  const handlesubmit = (e) => {
+    e.preventDefault();
     dispatch(
       loginAPI({
         email,
         password,
       })
-    ).then((res) => {
+    ).then(() => {
       navigate("/");
     });
   };
@@ -176,52 +178,56 @@ export const Login = () => {
                 className={styles.google}
                 clientId={clientId}
                 buttonText="Sign up with Google"
+                // onSuccess={navigate("/")}
                 onSuccess={onLoginSuccess}
                 onFailure={onLoginError}
                 cookiePolicy={"single_host_origin"}
                 isSignedIn={true}
               />
             </Box>
-
             <br />
             <br />
             <Text fontSize={"12px"} textAlign={"center"}>
               OR
             </Text>
             <br />
-            <Input
-              w="80%"
-              placeholder="Email"
-              borderRadius={0}
-              type="email"
-              onChange={(e) => {
-                setemail(e.target.value);
-              }}
-            />
-            <br />
-            <br />
-            <Input
-              w="80%"
-              placeholder="Password"
-              borderRadius={0}
-              type="password"
-              onChange={(e) => {
-                setpassword(e.target.value);
-              }}
-            />
-            <br />
-            <HStack justifyContent={"center"} m="20px">
-              <Checkbox />
-              <Text> Remember me</Text>
-            </HStack>
-            <Button
-              colorScheme="green"
-              w="80%"
-              borderRadius={0}
-              onClick={handlesubmit}
-            >
-              Log in
-            </Button>
+            <form onSubmit={handlesubmit}>
+              <Input
+                required
+                w="80%"
+                placeholder="Email"
+                borderRadius={0}
+                type="email"
+                onChange={(e) => {
+                  setemail(e.target.value);
+                }}
+              />
+              <br />
+              <br />
+              <Input
+                required
+                w="80%"
+                placeholder="Password"
+                borderRadius={0}
+                type="password"
+                onChange={(e) => {
+                  setpassword(e.target.value);
+                }}
+              />
+              <br />
+              <HStack justifyContent={"center"} m="20px">
+                <Checkbox />
+                <Text> Remember me</Text>
+              </HStack>
+              <Button
+                colorScheme="green"
+                w="80%"
+                borderRadius={0}
+                type="submit"
+              >
+                Log in
+              </Button>
+            </form>
             <br />
             <br />
             <Text color="#00AC85">Reset Password</Text>
