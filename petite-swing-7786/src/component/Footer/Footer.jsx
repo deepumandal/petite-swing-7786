@@ -18,15 +18,19 @@ import {
 const Footer = () => {
   return (
     <Box
+    
       color="#595568"
-      p="20px 20px"
+      p="10px 10px"
       cursor="pointer"
+      w={{ lg: "80%" }}
+      margin="auto"
       display={{ md: "flex" }}
       justifyContent={{ md: "space-evenly" }}
+      textAlign="left"
     >
       {/* Product Box */}
-      <Box>
-        <Text fontSize="20px" fontWeight="500">
+      <Box p="10px 10px" w={{ lg: "20%" }}>
+        <Text fontSize="17px" lineHeight="24px" fontWeight="600">
           PRODUCT
         </Text>
         <br />
@@ -34,17 +38,20 @@ const Footer = () => {
           <Text key={i}
             _hover={{ color: "black.500", textDecoration: "underline" }}
             fontWeight="300"
+            fontSize="16px"
+            lineHeight="30px"
+            mb="2%"
           >
             {e}
           </Text>
         ))}
       </Box>
       <br />
-      <Box>
-        {/* Free Resources Box */}
 
+      {/* Free Resources Box */}
+      <Box p="10px 10px" w={{ lg: "25%" }}>
         <Box>
-          <Text fontSize="20px" fontWeight="500">
+          <Text fontSize="17px" lineHeight="24px" fontWeight="600">
             FREE RESOURCES
           </Text>
           <br />
@@ -52,6 +59,8 @@ const Footer = () => {
             <Text key={i}
               _hover={{ color: "black.500", textDecoration: "underline" }}
               fontWeight="300"
+              fontSize="16px"
+              lineHeight="30px"
             >
               {e}
             </Text>
@@ -61,6 +70,8 @@ const Footer = () => {
             <Text key={i}
               _hover={{ color: "black.500", textDecoration: "underline" }}
               fontWeight="300"
+              fontSize="16px"
+              lineHeight="30px"
             >
               {e}
             </Text>
@@ -70,7 +81,7 @@ const Footer = () => {
         {/* Templates box */}
 
         <Box w={{ sm: "50%", lg: "100%", base: "100%" }}>
-          <Text fontSize="20px" fontWeight="500">
+          <Text fontSize="17px" lineHeight="24px" fontWeight="600">
             Templates
           </Text>
           <br />
@@ -91,6 +102,8 @@ const Footer = () => {
                         textDecoration: "underline",
                       }}
                       fontWeight="300"
+                      fontSize="16px"
+                      lineHeight="30px"
                     >
                       {k}
                     </Text>
@@ -104,8 +117,8 @@ const Footer = () => {
       </Box>
       {/* BONSAI Box */}
 
-      <Box>
-        <Text fontSize="20px" fontWeight="500">
+      <Box  p="10px 10px"w={{ lg: "20%" }}>
+        <Text fontSize="17px" lineHeight="24px" fontWeight="600">
           BONSAI
         </Text>
         <br />
@@ -114,6 +127,8 @@ const Footer = () => {
           <Text key={i}
             _hover={{ color: "black.500", textDecoration: "underline" }}
             fontWeight="300"
+            fontSize="16px"
+            lineHeight="30px"
           >
             {e}
           </Text>
