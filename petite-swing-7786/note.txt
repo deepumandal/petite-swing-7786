@@ -3,6 +3,8 @@ npm i react-router-dom@6
 npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
 npm i @chakra-ui/icons
          npm install react-owl-carousel2
+npm i react-chrono
+  npm i react-apexcharts
 
 
 navbar
