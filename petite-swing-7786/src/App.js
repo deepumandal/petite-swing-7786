@@ -7,7 +7,8 @@ import { Sign } from "./Auth/Sign";
 import Footer from "./component/Footer/Footer";
 import Pricing from "./pages/Price/Pricing";
 import Reviews from "./pages/Reviews/Reviews";
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard/Dash";
+import Dash from "./pages/Dashboard/Dash";
 // import RequireAuth from "./Auth/RequiresAuth";
 
 
@@ -34,7 +35,7 @@ else if(location.pathname==="/login"){
           <Route path={"/sign"} element={<Sign />} />
           <Route path={"/pricing"} element={<Pricing />} />
           <Route path="/reviews" element={<Reviews />} />
-          <Route path='/dashboard' element={ <Dashboard /> } />
+          <Route path='/dashboards' element={ <Dash /> } />
         </Routes>
         <br />
         <br />
