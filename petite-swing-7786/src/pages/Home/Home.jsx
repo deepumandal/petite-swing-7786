@@ -190,7 +190,7 @@ const Home = () => {
           </Heading>
         </Box>
         <Spacer />
-        <Link to="/dashboard">
+        <Link to="/dash">
           <Button
             bg={"#00b289"}
             p={4}

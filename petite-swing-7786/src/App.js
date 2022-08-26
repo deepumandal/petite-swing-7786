@@ -8,12 +8,9 @@ import Footer from "./component/Footer/Footer";
 import Pricing from "./pages/Price/Pricing";
 import Reviews from "./pages/Reviews/Reviews";
 
-// import Dashboard from "./pages/Dashboard/Dash";
 import Dash from "./pages/Dashboard/Dash";
-
-
 import Dashboard from "./component/AppBonsai/Dashboard";
-import RequireAuth from "./Auth/RequiresAuth";
+
 
 
 
@@ -22,8 +19,8 @@ function App() {
   const location =  useLocation()
 
 
-if(location.pathname==="/dashboard"){
-  return <Dashboard />
+if(location.pathname==="/dash"){
+  return <Dash />
 }
 else if(location.pathname==="/login"){
   return <Login />
@@ -31,7 +28,7 @@ else if(location.pathname==="/login"){
 
   return (
     <div className="App">
-
+<Navbar />
 
         <Routes>
           <Route path={"/"} element={  <Home />} />
@@ -39,7 +36,8 @@ else if(location.pathname==="/login"){
           <Route path={"/sign"} element={<Sign />} />
           <Route path={"/pricing"} element={<Pricing />} />
           <Route path="/reviews" element={<Reviews />} />
-          <Route path='/dashboards' element={ <Dash /> } />
+          <Route path='/dash' element={ <Dash /> } />
+          <Route path='/dashboard' element={ <Dashboard /> } />
         </Routes>
         <br />
         <br />
