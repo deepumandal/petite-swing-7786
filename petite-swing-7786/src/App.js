@@ -7,6 +7,7 @@ import { Sign } from "./Auth/Sign";
 import Footer from "./component/Footer/Footer";
 import Pricing from "./pages/Price/Pricing";
 import Reviews from "./pages/Reviews/Reviews";
+
 import Dash from "./pages/Dashboard/Dash";
 import Dashboard from "./component/AppBonsai/Dashboard";
 
