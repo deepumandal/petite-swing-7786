@@ -8,7 +8,7 @@ import Footer from "./component/Footer/Footer";
 import Pricing from "./pages/Price/Pricing";
 import Reviews from "./pages/Reviews/Reviews";
 
-import Dashboard from "./pages/Dashboard/Dash";
+// import Dashboard from "./pages/Dashboard/Dash";
 import Dash from "./pages/Dashboard/Dash";
 
 
