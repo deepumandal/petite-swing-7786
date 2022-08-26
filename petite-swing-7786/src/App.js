@@ -7,9 +7,14 @@ import { Sign } from "./Auth/Sign";
 import Footer from "./component/Footer/Footer";
 import Pricing from "./pages/Price/Pricing";
 import Reviews from "./pages/Reviews/Reviews";
+
 import Dashboard from "./pages/Dashboard/Dash";
 import Dash from "./pages/Dashboard/Dash";
-// import RequireAuth from "./Auth/RequiresAuth";
+
+
+import Dashboard from "./component/AppBonsai/Dashboard";
+import RequireAuth from "./Auth/RequiresAuth";
+
 
 
 function App() {
@@ -26,8 +31,7 @@ else if(location.pathname==="/login"){
 
   return (
     <div className="App">
-      
-       <Navbar />
+
 
         <Routes>
           <Route path={"/"} element={  <Home />} />
