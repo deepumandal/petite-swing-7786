@@ -12,8 +12,22 @@ import {
   Flex,
 } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
+import {  useSelector, useDispatch } from 'react-redux'
+import { logout } from '../../Store/auth/auth.actions'
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ProfileBoard = () => {
+
+  const {loading, data, error} = useSelector((state)=>state.auth)
+const dispatch = useDispatch()
+ const nav = useNavigate()
+const handlelogout =()=>{
+  dispatch(logout())
+  console.log(data)
+ nav('/')
+}
+
+
   return (
    <>
    <Menu>
@@ -36,11 +50,17 @@ const ProfileBoard = () => {
      
   </MenuButton>
   <MenuList>
-    <MenuItem>New File</MenuItem>
-    <MenuItem>New Window</MenuItem>
+    <MenuItem >Get Bonsai Free</MenuItem>
     <MenuDivider />
-    <MenuItem>Open...</MenuItem>
-    <MenuItem>Save File</MenuItem>
+    <MenuItem>Help Center</MenuItem>
+    <MenuItem>What's New </MenuItem>
+    <MenuDivider />
+    <MenuItem>My Subscription </MenuItem>
+    <MenuItem>Apps & Integrations </MenuItem>
+    <MenuItem> Payments </MenuItem>
+    <MenuItem> Settings</MenuItem>
+    <MenuItem onClick={()=>handlelogout()}> Logout </MenuItem>
+    {/* <MenuItem> </MenuItem> */}
   </MenuList>
 </Menu>
    </>

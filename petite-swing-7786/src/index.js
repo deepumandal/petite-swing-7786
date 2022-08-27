@@ -12,15 +12,15 @@ import HellobonsaiProvider from "./Context/HellobonsaiContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <HellobonsaiProvider>
+  <HellobonsaiProvider>
+      <Provider store={store}>
     <BrowserRouter>
       <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>
     </BrowserRouter>
-      </HellobonsaiProvider>
  </Provider>
+      </HellobonsaiProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

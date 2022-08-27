@@ -13,9 +13,13 @@ import Hometrust from "../../component/Hometrust/Hometrust";
 import Owlcarousal from "../../component/owlcarousal/Owlcarousal";
 import Virticleclicktabs from "../../component/Virticleclicktabs/Virticleclicktabs";
 import Withorwithout from "../../component/Withorwithout/Withorwithout";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Home = () => {
+
+  const loc = useLocation()
+ 
+
   return (
     <Box
       mt={{
