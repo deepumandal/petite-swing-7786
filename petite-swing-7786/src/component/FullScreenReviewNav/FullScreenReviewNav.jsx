@@ -7,6 +7,7 @@ import {
   AccordionIcon,
   Box,
 } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 
 const FullScreenReviewNav = () => {
   return (
@@ -14,10 +15,11 @@ const FullScreenReviewNav = () => {
     <AccordionItem border={"0px"}>
       <h2>
         <AccordionButton>
+          <Link to='/reviews' >
           <Box flex='1' textAlign='left'>
-          Pricing
+          Review
           </Box>
-
+          </Link>
         </AccordionButton>
       </h2>
      

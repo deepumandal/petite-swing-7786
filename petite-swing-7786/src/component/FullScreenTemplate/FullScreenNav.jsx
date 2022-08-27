@@ -1,5 +1,6 @@
 import { Button, Flex, Spacer } from '@chakra-ui/react'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import FullScreenPricingNav from '../FullScreenPricingNav/FullScreenPricingNav'
 import FullscreenProductnav from '../FullscreenProductnav/FullscreenProductnav'
 import FullScreenReviewNav from '../FullScreenReviewNav/FullScreenReviewNav'
@@ -38,6 +39,7 @@ const FullScreenNav = () => {
 
         <Spacer />
         <Flex gap={"20px"}>
+          <Link to='/login' >
           <Button
             size={"sm"}
             colorScheme="teal"
@@ -49,6 +51,7 @@ const FullScreenNav = () => {
           >
             LOG IN
           </Button>
+          </Link>
 
           <Button color={"white"} size={"sm"} bg={"#00b289"}>
             START FREE
