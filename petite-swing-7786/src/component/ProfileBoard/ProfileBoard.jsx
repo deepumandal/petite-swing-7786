@@ -12,6 +12,10 @@ import {
   Flex,
 } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
+import { useSelector } from 'react-redux';
+
+const ProfileBoard = () => {
+  const authfirebase = useSelector((state) => state.auth);
 import {  useSelector, useDispatch } from 'react-redux'
 import { logout } from '../../Store/auth/auth.actions'
 import { useLocation, useNavigate } from "react-router-dom";
@@ -44,7 +48,7 @@ const handlelogout =()=>{
   >
     <Flex alignItems={"center"}>
 
-    <Image w={"50px"}  src={"./images/avatar.png"} />
+    <Image w={"50px"}  src={authfirebase.profileInfo.photoURL} />
     <ChevronDownIcon />
     </Flex>
      
@@ -67,4 +71,4 @@ const handlelogout =()=>{
   )
 }
 
-export default ProfileBoard
+export default ProfileBoard;

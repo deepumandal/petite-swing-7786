@@ -12,25 +12,59 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsEyeFill } from "react-icons/bs";
 import styles from "./Auth.module.css";
 import { Foot } from "./Foot";
 import { Navabr } from "./Navabr";
-import GoogleLogin from "react-google-login";
+import { useDispatch } from "react-redux";
+import { loginAPI } from "../Store/auth/auth.actions";
+import { Link, useNavigate } from "react-router-dom";
+import { auth, signInwithGgogle } from "./firebase";
+import { AUTH_SUCESS_WITH_FIRE } from "../Store/auth/auth.types";
 
 export const Sign = () => {
-  const onLoginSuccess = (res) => {
-    // console.log(res);
+  const [user, setuser] = useState(null);
+  const signout = () => {
+    auth.signOut().then(() => {
+      setuser(null);
+    });
   };
 
-  const onLoginError = (err) => {
-    // console.log(err);
+  useEffect(() => {
+    auth.onAuthStateChanged(async (user) => {
+      setuser(user);
+    });
+  }, []);
+
+  const [show, setShow] = React.useState(false);
+  const handleClick = () => setShow(!show);
+
+  const dispatch = useDispatch();
+  const [password, setpassword] = useState("");
+  const [email, setemail] = useState("");
+  const navigate = useNavigate();
+  const handlesubmit = (e) => {
+    e.preventDefault();
+    dispatch(
+      loginAPI({
+        email,
+        password,
+      })
+    ).then(() => {
+      navigate("/dash");
+    });
   };
-
-  const clientId =
-    "175168483203-8td0h9fbnrfjfpj4uf1rpc5j79kukgfm.apps.googleusercontent.com";
-
+  const loginFirebase = async () => {
+    let data = await signInwithGgogle();
+    // console.log(data);
+    dispatch({ type: AUTH_SUCESS_WITH_FIRE, payload: data.user });
+    if (data) {
+      setTimeout(() => {
+        navigate("/dash");
+      }, 1000);
+    }
+  };
   return (
     <>
       <Navabr />
@@ -93,17 +127,74 @@ export const Sign = () => {
             </Heading>
             <br />
             <br />
-            <Box w="100%">
-              <GoogleLogin
-                className={styles.signingoogle1}
-                clientId={clientId}
-                buttonText="Sign up with Google"
-                onSuccess={onLoginSuccess}
-                onFailure={onLoginError}
-                cookiePolicy={"single_host_origin"}
-                isSignedIn={true}
-              />
-            </Box>
+            <Button
+              w="80%"
+              variant={"outline"}
+              borderRadius={0}
+              onClick={() => loginFirebase()}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="169"
+                height="18"
+                fill="none"
+                viewBox="0 0 169 18"
+              >
+                <path
+                  fill="#4285F4"
+                  fillRule="evenodd"
+                  d="M17.64 9.205c0-.639-.057-1.252-.164-1.841H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"
+                  clipRule="evenodd"
+                ></path>
+                <path
+                  fill="#34A853"
+                  fillRule="evenodd"
+                  d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z"
+                  clipRule="evenodd"
+                ></path>
+                <path
+                  fill="#FBBC05"
+                  fillRule="evenodd"
+                  d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"
+                  clipRule="evenodd"
+                ></path>
+                <path
+                  fill="#EA4335"
+                  fillRule="evenodd"
+                  d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"
+                  clipRule="evenodd"
+                ></path>
+                <path
+                  fill="#4285F4"
+                  fillRule="evenodd"
+                  d="M17.64 9.205c0-.639-.057-1.252-.164-1.841H9v3.481h4.844a4.14 4.14 0 01-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.874 2.684-6.615z"
+                  clipRule="evenodd"
+                ></path>
+                <path
+                  fill="#34A853"
+                  fillRule="evenodd"
+                  d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 009 18z"
+                  clipRule="evenodd"
+                ></path>
+                <path
+                  fill="#FBBC05"
+                  fillRule="evenodd"
+                  d="M3.964 10.71A5.41 5.41 0 013.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 000 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"
+                  clipRule="evenodd"
+                ></path>
+                <path
+                  fill="#EA4335"
+                  fillRule="evenodd"
+                  d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 00.957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"
+                  clipRule="evenodd"
+                ></path>
+                <path
+                  transform="translate(0 2)"
+                  fill="#757575"
+                  d="M48.214 10.437c0-.438-.155-.775-.465-1.012-.305-.237-.859-.476-1.661-.718s-1.44-.51-1.914-.807c-.907-.57-1.36-1.312-1.36-2.228 0-.802.325-1.463.977-1.983.656-.52 1.506-.779 2.55-.779.692 0 1.31.128 1.852.383.543.255.969.62 1.279 1.094.31.47.465.99.465 1.565h-1.723c0-.52-.164-.925-.492-1.217-.324-.296-.789-.444-1.395-.444-.565 0-1.005.12-1.32.362-.31.242-.464.58-.464 1.012 0 .365.169.67.506.916.337.242.893.479 1.668.711.775.228 1.397.49 1.866.786.47.292.814.629 1.032 1.012.219.378.328.822.328 1.333 0 .83-.319 1.49-.957 1.982-.633.488-1.494.732-2.584.732-.72 0-1.383-.132-1.989-.397-.601-.269-1.07-.638-1.408-1.107-.333-.47-.5-1.016-.5-1.64h1.73c0 .564.187 1.002.56 1.312.375.31.91.465 1.607.465.602 0 1.053-.121 1.354-.363.305-.246.458-.57.458-.97zM53.067 13h-1.66V5.604h1.66V13zm-1.763-9.317c0-.256.08-.468.239-.636.164-.169.397-.253.697-.253.301 0 .533.084.697.253.165.168.247.38.247.636 0 .25-.082.46-.246.629-.165.164-.397.246-.698.246-.3 0-.533-.082-.697-.246a.88.88 0 01-.24-.63zm3.288 5.564c0-1.148.269-2.064.806-2.748.543-.688 1.26-1.032 2.154-1.032.843 0 1.506.294 1.989.882l.075-.745h1.497v7.17c0 .971-.303 1.737-.909 2.297-.602.56-1.415.841-2.44.841a3.929 3.929 0 01-1.593-.342c-.515-.223-.907-.517-1.176-.882l.786-.998c.51.607 1.14.91 1.887.91.551 0 .987-.15 1.306-.452.319-.296.478-.733.478-1.312v-.5c-.478.534-1.116.8-1.914.8-.866 0-1.574-.343-2.126-1.031-.547-.689-.82-1.641-.82-2.858zm1.654.144c0 .742.15 1.328.451 1.757.306.423.727.635 1.265.635.67 0 1.167-.287 1.49-.861V7.668c-.314-.56-.806-.84-1.476-.84-.547 0-.973.216-1.279.649-.3.433-.45 1.07-.45 1.914zm8.121-3.787l.048.854c.547-.66 1.265-.991 2.153-.991 1.54 0 2.325.882 2.352 2.645V13h-1.661V8.208c0-.47-.103-.816-.308-1.04-.2-.227-.53-.34-.991-.34-.67 0-1.169.302-1.497.908V13h-1.661V5.604h1.565zM76.091 13h-1.723V3.047h1.723V13zm3.507-7.396l.047.854c.547-.66 1.265-.991 2.154-.991 1.54 0 2.324.882 2.351 2.645V13h-1.66V8.208c0-.47-.103-.816-.308-1.04-.2-.227-.531-.34-.992-.34-.67 0-1.168.302-1.497.908V13h-1.66V5.604h1.565zm16.235 5.106l1.176-5.106h1.62L96.612 13h-1.367L93.66 7.92 92.101 13h-1.368L88.71 5.604h1.62l1.196 5.051 1.518-5.051h1.25l1.539 5.106zm5.674 2.29h-1.661V5.604h1.661V13zm-1.764-9.317c0-.256.08-.468.24-.636.163-.169.396-.253.697-.253.3 0 .533.084.697.253.164.168.246.38.246.636 0 .25-.082.46-.246.629-.164.164-.397.246-.697.246-.301 0-.534-.082-.698-.246a.88.88 0 01-.239-.63zm5.66.123v1.798h1.306v1.23h-1.306v4.129c0 .282.055.488.164.615.114.123.315.185.602.185.191 0 .385-.023.581-.069v1.285a4.092 4.092 0 01-1.094.158c-1.276 0-1.914-.704-1.914-2.113v-4.19h-1.217v-1.23h1.217V3.806h1.661zm4.218 2.604a2.6 2.6 0 012.058-.943c1.577 0 2.376.9 2.399 2.7V13h-1.661V8.229c0-.51-.112-.87-.335-1.08-.219-.215-.542-.322-.971-.322-.665 0-1.162.296-1.49.889V13h-1.661V2.5h1.661v3.91zm17.418 5.298c-.36.47-.859.825-1.497 1.066-.638.242-1.363.363-2.174.363-.834 0-1.572-.19-2.215-.568a3.808 3.808 0 01-1.49-1.62c-.346-.706-.526-1.529-.54-2.468v-.779c0-1.504.36-2.677 1.08-3.52.72-.848 1.725-1.272 3.015-1.272 1.107 0 1.987.274 2.638.82.652.547 1.044 1.336 1.176 2.366h-1.695c-.191-1.199-.886-1.798-2.085-1.798-.775 0-1.365.28-1.771.84-.401.557-.608 1.375-.622 2.455v.765c0 1.076.226 1.912.677 2.51.456.592 1.087.888 1.894.888.884 0 1.513-.2 1.886-.602V9.206h-2.05V7.894h3.773v3.814zm1.429-2.475c0-.724.143-1.376.43-1.955.288-.583.691-1.03 1.21-1.34.52-.314 1.117-.471 1.791-.471.998 0 1.807.321 2.427.964.625.642.962 1.494 1.012 2.556l.007.39c0 .73-.142 1.38-.424 1.955a3.08 3.08 0 01-1.203 1.333c-.52.315-1.121.472-1.805.472-1.044 0-1.88-.347-2.509-1.04-.624-.697-.936-1.624-.936-2.782v-.082zm1.661.144c0 .761.157 1.358.472 1.791.314.428.752.643 1.312.643.561 0 .996-.22 1.306-.657.314-.437.471-1.078.471-1.92 0-.748-.161-1.34-.485-1.778-.319-.437-.754-.656-1.306-.656-.542 0-.973.216-1.292.65-.319.428-.478 1.07-.478 1.927zm6.309-.144c0-.724.144-1.376.431-1.955a3.122 3.122 0 011.21-1.34c.52-.314 1.117-.471 1.791-.471.998 0 1.807.321 2.427.964.624.642.961 1.494 1.012 2.556l.006.39c0 .73-.141 1.38-.423 1.955a3.076 3.076 0 01-1.204 1.333c-.519.315-1.121.472-1.804.472-1.044 0-1.88-.347-2.509-1.04-.624-.697-.937-1.624-.937-2.782v-.082zm1.662.144c0 .761.157 1.358.471 1.791.315.428.752.643 1.313.643.56 0 .996-.22 1.305-.657.315-.437.472-1.078.472-1.92 0-.748-.162-1.34-.485-1.778-.319-.437-.754-.656-1.306-.656-.542 0-.973.216-1.292.65-.319.428-.478 1.07-.478 1.927zm6.33-.13c0-1.148.269-2.064.806-2.748.543-.688 1.26-1.032 2.154-1.032.843 0 1.506.294 1.989.882l.075-.745h1.497v7.17c0 .971-.303 1.737-.909 2.297-.602.56-1.415.841-2.44.841a3.925 3.925 0 01-1.593-.342c-.515-.223-.907-.517-1.176-.882l.786-.998c.511.607 1.139.91 1.887.91.551 0 .987-.15 1.306-.452.319-.296.478-.733.478-1.312v-.5c-.478.534-1.116.8-1.914.8-.866 0-1.575-.343-2.126-1.031-.547-.689-.82-1.641-.82-2.858zm1.654.144c0 .742.15 1.328.451 1.757.305.423.727.635 1.265.635.67 0 1.166-.287 1.49-.861V7.668c-.314-.56-.807-.84-1.477-.84-.546 0-.973.216-1.278.649-.301.433-.451 1.07-.451 1.914zM154.431 13h-1.661V2.5h1.661V13zm5.072.137c-1.053 0-1.907-.33-2.564-.992-.651-.665-.977-1.549-.977-2.652v-.205c0-.738.141-1.397.424-1.976a3.27 3.27 0 011.203-1.36 3.172 3.172 0 011.723-.485c1.007 0 1.784.321 2.331.964.551.642.827 1.551.827 2.727v.67h-4.833c.05.61.253 1.094.608 1.45.36.355.811.532 1.354.532.761 0 1.38-.307 1.859-.922l.896.854a3.016 3.016 0 01-1.19 1.032 3.72 3.72 0 01-1.661.363zm-.198-6.337c-.456 0-.825.16-1.108.478-.278.32-.455.764-.533 1.333h3.165v-.123c-.036-.556-.184-.975-.444-1.258-.26-.287-.62-.43-1.08-.43z"
+                ></path>
+              </svg>
+            </Button>
 
             <br />
             <br />
@@ -111,502 +202,417 @@ export const Sign = () => {
               OR
             </Text>
             <br />
-            <Box w="80%" m="0px auto">
-              <Text
-                textAlign={"left"}
-                mb="8px"
-                textTransform={"uppercase"}
-                fontSize="14px"
-              >
-                Email
-              </Text>
+            <form onSubmit={handlesubmit}>
+              <Box w="80%" m="0px auto">
+                <Text
+                  textAlign={"left"}
+                  mb="8px"
+                  textTransform={"uppercase"}
+                  fontSize="14px"
+                >
+                  Email
+                </Text>
 
-              <Input
-                type="email"
-                placeholder="your@gmail.com"
-                borderRadius={0}
-              />
-            </Box>
-            <br />
-            <Box w="80%" m="0px auto">
-              <Text
-                textAlign={"left"}
-                mb="8px"
-                textTransform={"uppercase"}
-                fontSize="14px"
-              >
-                full name
-              </Text>
+                <Input
+                  type="email"
+                  placeholder="your@gmail.com"
+                  borderRadius={0}
+                  required
+                  onChange={(e) => {
+                    setemail(e.target.value);
+                  }}
+                  // value="eve.holt@reqres.in"
+                />
+              </Box>
+              <br />
+              <Box w="80%" m="0px auto">
+                <Text
+                  textAlign={"left"}
+                  mb="8px"
+                  textTransform={"uppercase"}
+                  fontSize="14px"
+                >
+                  full name
+                </Text>
 
-              <Input type="text" placeholder="Jane Smith" borderRadius={0} />
-            </Box>
-            <br />
-            <Box w="80%" m="0px auto">
-              <Text
-                textAlign={"left"}
-                mb="8px"
-                textTransform={"uppercase"}
-                fontSize="14px"
-              >
-                Password
-              </Text>
+                <Input
+                  type="text"
+                  placeholder="Jane Smith"
+                  borderRadius={0}
+                  // value="John Smith"
+                />
+              </Box>
+              <br />
+              <Box w="80%" m="0px auto">
+                <Text
+                  textAlign={"left"}
+                  mb="8px"
+                  textTransform={"uppercase"}
+                  fontSize="14px"
+                >
+                  Password
+                </Text>
 
-              <InputGroup m="auto">
-                <Input type=".........." placeholder="Password " />
+                <InputGroup m="auto">
+                  <Input
+                    type={show ? "text" : "password"}
+                    placeholder="Password"
+                    onChange={(e) => {
+                      setpassword(e.target.value);
+                    }}
+                    // value="cityslicka"
+                  />
 
-                <InputRightElement children={<BsEyeFill color="gray.300" />} />
-              </InputGroup>
-              <Text fontSize="10px" textAlign={"left"} mt="5px">
-                Your password must be at least 6 characters
-              </Text>
-            </Box>
+                  <InputRightElement
+                    cursor={"pointer"}
+                    onClick={handleClick}
+                    children={<BsEyeFill color="gray.300" />}
+                  />
+                </InputGroup>
+                <Text fontSize="10px" textAlign={"left"} mt="5px">
+                  Your password must be at least 6 characters
+                </Text>
+              </Box>
 
-            <Box w="80%" m="20px auto">
-              <HStack gap="20px">
-                <Box w="60%">
-                  <Text
-                    textAlign={"left"}
-                    mb="8px"
-                    textTransform={"uppercase"}
-                    fontSize="14px"
-                  >
-                    country
-                  </Text>
+              <Box w="80%" m="20px auto">
+                <HStack gap="20px">
+                  <Box w="60%">
+                    <Text
+                      textAlign={"left"}
+                      mb="8px"
+                      textTransform={"uppercase"}
+                      fontSize="14px"
+                    >
+                      country
+                    </Text>
 
-                  <Select placeholder="India" textTransform={"uppercase"}>
-                    <option value="Afghanistan">Afghanistan</option>
-                    <option value="Åland Islands">Åland Islands</option>
-                    <option value="Albania">Albania</option>
-                    <option value="Algeria">Algeria</option>
-                    <option value="American Samoa">American Samoa</option>
-                    <option value="Andorra">Andorra</option>
-                    <option value="Angola">Angola</option>
-                    <option value="Anguilla">Anguilla</option>
-                    <option value="Antarctica">Antarctica</option>
-                    <option value="Antigua and Barbuda">
-                      Antigua and Barbuda
-                    </option>
-                    <option value="Argentina">Argentina</option>
-                    <option value="Armenia">Armenia</option>
-                    <option value="Aruba">Aruba</option>
-                    <option value="Australia">Australia</option>
-                    <option value="Austria">Austria</option>
-                    <option value="Azerbaijan">Azerbaijan</option>
-                    <option value="Bahamas">Bahamas</option>
-                    <option value="Bahrain">Bahrain</option>
-                    <option value="Bangladesh">Bangladesh</option>
-                    <option value="Barbados">Barbados</option>
-                    <option value="Belarus">Belarus</option>
-                    <option value="Belgium">Belgium</option>
-                    <option value="Belize">Belize</option>
-                    <option value="Benin">Benin</option>
-                    <option value="Bermuda">Bermuda</option>
-                    <option value="Bhutan">Bhutan</option>
-                    <option value="Bolivia">Bolivia</option>
-                    <option value="Bosnia and Herzegovina">
-                      Bosnia and Herzegovina
-                    </option>
-                    <option value="Botswana">Botswana</option>
-                    <option value="Bouvet Island">Bouvet Island</option>
-                    <option value="Brazil">Brazil</option>
-                    <option value="British Indian Ocean Territory">
-                      British Indian Ocean Territory
-                    </option>
-                    <option value="Brunei Darussalam">Brunei Darussalam</option>
-                    <option value="Bulgaria">Bulgaria</option>
-                    <option value="Burkina Faso">Burkina Faso</option>
-                    <option value="Burundi">Burundi</option>
-                    <option value="Cambodia">Cambodia</option>
-                    <option value="Cameroon">Cameroon</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Cape Verde">Cape Verde</option>
-                    <option value="Cayman Islands">Cayman Islands</option>
-                    <option value="Central African Republic">
-                      Central African Republic
-                    </option>
-                    <option value="Chad">Chad</option>
-                    <option value="Chile">Chile</option>
-                    <option value="China">China</option>
-                    <option value="Christmas Island">Christmas Island</option>
-                    <option value="Cocos (Keeling) Islands">
-                      Cocos (Keeling) Islands
-                    </option>
-                    <option value="Colombia">Colombia</option>
-                    <option value="Comoros">Comoros</option>
-                    <option value="Congo">Congo</option>
-                    <option value="Congo, The Democratic Republic of The">
-                      Congo, The Democratic Republic of The
-                    </option>
-                    <option value="Cook Islands">Cook Islands</option>
-                    <option value="Costa Rica">Costa Rica</option>
-                    <option value="Cote D'ivoire">Cote D'ivoire</option>
-                    <option value="Croatia">Croatia</option>
-                    <option value="Cuba">Cuba</option>
-                    <option value="Cyprus">Cyprus</option>
-                    <option value="Czech Republic">Czech Republic</option>
-                    <option value="Denmark">Denmark</option>
-                    <option value="Djibouti">Djibouti</option>
-                    <option value="Dominica">Dominica</option>
-                    <option value="Dominican Republic">
-                      Dominican Republic
-                    </option>
-                    <option value="Ecuador">Ecuador</option>
-                    <option value="Egypt">Egypt</option>
-                    <option value="El Salvador">El Salvador</option>
-                    <option value="Equatorial Guinea">Equatorial Guinea</option>
-                    <option value="Eritrea">Eritrea</option>
-                    <option value="Estonia">Estonia</option>
-                    <option value="Ethiopia">Ethiopia</option>
-                    <option value="Falkland Islands (Malvinas)">
-                      Falkland Islands (Malvinas)
-                    </option>
-                    <option value="Faroe Islands">Faroe Islands</option>
-                    <option value="Fiji">Fiji</option>
-                    <option value="Finland">Finland</option>
-                    <option value="France">France</option>
-                    <option value="French Guiana">French Guiana</option>
-                    <option value="French Polynesia">French Polynesia</option>
-                    <option value="French Southern Territories">
-                      French Southern Territories
-                    </option>
-                    <option value="Gabon">Gabon</option>
-                    <option value="Gambia">Gambia</option>
-                    <option value="Georgia">Georgia</option>
-                    <option value="Germany">Germany</option>
-                    <option value="Ghana">Ghana</option>
-                    <option value="Gibraltar">Gibraltar</option>
-                    <option value="Greece">Greece</option>
-                    <option value="Greenland">Greenland</option>
-                    <option value="Grenada">Grenada</option>
-                    <option value="Guadeloupe">Guadeloupe</option>
-                    <option value="Guam">Guam</option>
-                    <option value="Guatemala">Guatemala</option>
-                    <option value="Guernsey">Guernsey</option>
-                    <option value="Guinea">Guinea</option>
-                    <option value="Guinea-bissau">Guinea-bissau</option>
-                    <option value="Guyana">Guyana</option>
-                    <option value="Haiti">Haiti</option>
-                    <option value="Heard Island and Mcdonald Islands">
-                      Heard Island and Mcdonald Islands
-                    </option>
-                    <option value="Holy See (Vatican City State)">
-                      Holy See (Vatican City State)
-                    </option>
-                    <option value="Honduras">Honduras</option>
-                    <option value="Hong Kong">Hong Kong</option>
-                    <option value="Hungary">Hungary</option>
-                    <option value="Iceland">Iceland</option>
-                    <option value="India">India</option>
-                    <option value="Indonesia">Indonesia</option>
-                    <option value="Iran, Islamic Republic of">
-                      Iran, Islamic Republic of
-                    </option>
-                    <option value="Iraq">Iraq</option>
-                    <option value="Ireland">Ireland</option>
-                    <option value="Isle of Man">Isle of Man</option>
-                    <option value="Israel">Israel</option>
-                    <option value="Italy">Italy</option>
-                    <option value="Jamaica">Jamaica</option>
-                    <option value="Japan">Japan</option>
-                    <option value="Jersey">Jersey</option>
-                    <option value="Jordan">Jordan</option>
-                    <option value="Kazakhstan">Kazakhstan</option>
-                    <option value="Kenya">Kenya</option>
-                    <option value="Kiribati">Kiribati</option>
-                    <option value="Korea, Democratic People's Republic of">
-                      Korea, Democratic People's Republic of
-                    </option>
-                    <option value="Korea, Republic of">
-                      Korea, Republic of
-                    </option>
-                    <option value="Kuwait">Kuwait</option>
-                    <option value="Kyrgyzstan">Kyrgyzstan</option>
-                    <option value="Lao People's Democratic Republic">
-                      Lao People's Democratic Republic
-                    </option>
-                    <option value="Latvia">Latvia</option>
-                    <option value="Lebanon">Lebanon</option>
-                    <option value="Lesotho">Lesotho</option>
-                    <option value="Liberia">Liberia</option>
-                    <option value="Libyan Arab Jamahiriya">
-                      Libyan Arab Jamahiriya
-                    </option>
-                    <option value="Liechtenstein">Liechtenstein</option>
-                    <option value="Lithuania">Lithuania</option>
-                    <option value="Luxembourg">Luxembourg</option>
-                    <option value="Macao">Macao</option>
-                    <option value="Macedonia, The Former Yugoslav Republic of">
-                      Macedonia, The Former Yugoslav Republic of
-                    </option>
-                    <option value="Madagascar">Madagascar</option>
-                    <option value="Malawi">Malawi</option>
-                    <option value="Malaysia">Malaysia</option>
-                    <option value="Maldives">Maldives</option>
-                    <option value="Mali">Mali</option>
-                    <option value="Malta">Malta</option>
-                    <option value="Marshall Islands">Marshall Islands</option>
-                    <option value="Martinique">Martinique</option>
-                    <option value="Mauritania">Mauritania</option>
-                    <option value="Mauritius">Mauritius</option>
-                    <option value="Mayotte">Mayotte</option>
-                    <option value="Mexico">Mexico</option>
-                    <option value="Micronesia, Federated States of">
-                      Micronesia, Federated States of
-                    </option>
-                    <option value="Moldova, Republic of">
-                      Moldova, Republic of
-                    </option>
-                    <option value="Monaco">Monaco</option>
-                    <option value="Mongolia">Mongolia</option>
-                    <option value="Montenegro">Montenegro</option>
-                    <option value="Montserrat">Montserrat</option>
-                    <option value="Morocco">Morocco</option>
-                    <option value="Mozambique">Mozambique</option>
-                    <option value="Myanmar">Myanmar</option>
-                    <option value="Namibia">Namibia</option>
-                    <option value="Nauru">Nauru</option>
-                    <option value="Nepal">Nepal</option>
-                    <option value="Netherlands">Netherlands</option>
-                    <option value="Netherlands Antilles">
-                      Netherlands Antilles
-                    </option>
-                    <option value="New Caledonia">New Caledonia</option>
-                    <option value="New Zealand">New Zealand</option>
-                    <option value="Nicaragua">Nicaragua</option>
-                    <option value="Niger">Niger</option>
-                    <option value="Nigeria">Nigeria</option>
-                    <option value="Niue">Niue</option>
-                    <option value="Norfolk Island">Norfolk Island</option>
-                    <option value="Northern Mariana Islands">
-                      Northern Mariana Islands
-                    </option>
-                    <option value="Norway">Norway</option>
-                    <option value="Oman">Oman</option>
-                    <option value="Pakistan">Pakistan</option>
-                    <option value="Palau">Palau</option>
-                    <option value="Palestinian Territory, Occupied">
-                      Palestinian Territory, Occupied
-                    </option>
-                    <option value="Panama">Panama</option>
-                    <option value="Papua New Guinea">Papua New Guinea</option>
-                    <option value="Paraguay">Paraguay</option>
-                    <option value="Peru">Peru</option>
-                    <option value="Philippines">Philippines</option>
-                    <option value="Pitcairn">Pitcairn</option>
-                    <option value="Poland">Poland</option>
-                    <option value="Portugal">Portugal</option>
-                    <option value="Puerto Rico">Puerto Rico</option>
-                    <option value="Qatar">Qatar</option>
-                    <option value="Reunion">Reunion</option>
-                    <option value="Romania">Romania</option>
-                    <option value="Russian Federation">
-                      Russian Federation
-                    </option>
-                    <option value="Rwanda">Rwanda</option>
-                    <option value="Saint Helena">Saint Helena</option>
-                    <option value="Saint Kitts and Nevis">
-                      Saint Kitts and Nevis
-                    </option>
-                    <option value="Saint Lucia">Saint Lucia</option>
-                    <option value="Saint Pierre and Miquelon">
-                      Saint Pierre and Miquelon
-                    </option>
-                    <option value="Saint Vincent and The Grenadines">
-                      Saint Vincent and The Grenadines
-                    </option>
-                    <option value="Samoa">Samoa</option>
-                    <option value="San Marino">San Marino</option>
-                    <option value="Sao Tome and Principe">
-                      Sao Tome and Principe
-                    </option>
-                    <option value="Saudi Arabia">Saudi Arabia</option>
-                    <option value="Senegal">Senegal</option>
-                    <option value="Serbia">Serbia</option>
-                    <option value="Seychelles">Seychelles</option>
-                    <option value="Sierra Leone">Sierra Leone</option>
-                    <option value="Singapore">Singapore</option>
-                    <option value="Slovakia">Slovakia</option>
-                    <option value="Slovenia">Slovenia</option>
-                    <option value="Solomon Islands">Solomon Islands</option>
-                    <option value="Somalia">Somalia</option>
-                    <option value="South Africa">South Africa</option>
+                    <Select placeholder="India" textTransform={"uppercase"}>
+                      <option value="Afghanistan">Afghanistan</option>
+                      <option value="Åland Islands">Åland Islands</option>
+                      <option value="Albania">Albania</option>
+                      <option value="Algeria">Algeria</option>
+                      <option value="American Samoa">American Samoa</option>
+                      <option value="Andorra">Andorra</option>
+                      <option value="Angola">Angola</option>
+                      <option value="Iceland">Iceland</option>
+                      <option value="India">India</option>
+                      <option value="Indonesia">Indonesia</option>
+                      <option value="Iran, Islamic Republic of">
+                        Iran, Islamic Republic of
+                      </option>
+                      <option value="Iraq">Iraq</option>
+                      <option value="Ireland">Ireland</option>
+                      <option value="Isle of Man">Isle of Man</option>
+                      <option value="Israel">Israel</option>
+                      <option value="Italy">Italy</option>
+                      <option value="Jamaica">Jamaica</option>
+                      <option value="Japan">Japan</option>
+                      <option value="Jersey">Jersey</option>
+                      <option value="Jordan">Jordan</option>
+                      <option value="Kazakhstan">Kazakhstan</option>
+                      <option value="Kenya">Kenya</option>
+                      <option value="Kiribati">Kiribati</option>
+                      <option value="Korea, Democratic People's Republic of">
+                        Korea, Democratic People's Republic of
+                      </option>
+                      <option value="Korea, Republic of">
+                        Korea, Republic of
+                      </option>
+                      <option value="Kuwait">Kuwait</option>
+                      <option value="Kyrgyzstan">Kyrgyzstan</option>
+                      <option value="Lao People's Democratic Republic">
+                        Lao People's Democratic Republic
+                      </option>
+                      <option value="Latvia">Latvia</option>
+                      <option value="Lebanon">Lebanon</option>
+                      <option value="Lesotho">Lesotho</option>
+                      <option value="Liberia">Liberia</option>
+                      <option value="Libyan Arab Jamahiriya">
+                        Libyan Arab Jamahiriya
+                      </option>
+                      <option value="Liechtenstein">Liechtenstein</option>
+                      <option value="Lithuania">Lithuania</option>
+                      <option value="Luxembourg">Luxembourg</option>
+                      <option value="Macao">Macao</option>
+                      <option value="Macedonia, The Former Yugoslav Republic of">
+                        Macedonia, The Former Yugoslav Republic of
+                      </option>
+                      <option value="Madagascar">Madagascar</option>
+                      <option value="Malawi">Malawi</option>
+                      <option value="Malaysia">Malaysia</option>
+                      <option value="Maldives">Maldives</option>
+                      <option value="Mali">Mali</option>
+                      <option value="Malta">Malta</option>
+                      <option value="Marshall Islands">Marshall Islands</option>
+                      <option value="Martinique">Martinique</option>
+                      <option value="Mauritania">Mauritania</option>
+                      <option value="Mauritius">Mauritius</option>
+                      <option value="Mayotte">Mayotte</option>
+                      <option value="Mexico">Mexico</option>
+                      <option value="Micronesia, Federated States of">
+                        Micronesia, Federated States of
+                      </option>
+                      <option value="Moldova, Republic of">
+                        Moldova, Republic of
+                      </option>
+                      <option value="Monaco">Monaco</option>
+                      <option value="Mongolia">Mongolia</option>
+                      <option value="Montenegro">Montenegro</option>
+                      <option value="Montserrat">Montserrat</option>
+                      <option value="Morocco">Morocco</option>
+                      <option value="Mozambique">Mozambique</option>
+                      <option value="Myanmar">Myanmar</option>
+                      <option value="Namibia">Namibia</option>
+                      <option value="Nauru">Nauru</option>
+                      <option value="Nepal">Nepal</option>
+                      <option value="Netherlands">Netherlands</option>
+                      <option value="Netherlands Antilles">
+                        Netherlands Antilles
+                      </option>
+                      <option value="New Caledonia">New Caledonia</option>
+                      <option value="New Zealand">New Zealand</option>
+                      <option value="Nicaragua">Nicaragua</option>
+                      <option value="Niger">Niger</option>
+                      <option value="Nigeria">Nigeria</option>
+                      <option value="Niue">Niue</option>
+                      <option value="Norfolk Island">Norfolk Island</option>
+                      <option value="Northern Mariana Islands">
+                        Northern Mariana Islands
+                      </option>
+                      <option value="Norway">Norway</option>
+                      <option value="Oman">Oman</option>
+                      <option value="Pakistan">Pakistan</option>
+                      <option value="Palau">Palau</option>
+                      <option value="Palestinian Territory, Occupied">
+                        Palestinian Territory, Occupied
+                      </option>
+                      <option value="Panama">Panama</option>
+                      <option value="Papua New Guinea">Papua New Guinea</option>
+                      <option value="Paraguay">Paraguay</option>
+                      <option value="Peru">Peru</option>
+                      <option value="Philippines">Philippines</option>
+                      <option value="Pitcairn">Pitcairn</option>
+                      <option value="Poland">Poland</option>
+                      <option value="Portugal">Portugal</option>
+                      <option value="Puerto Rico">Puerto Rico</option>
+                      <option value="Qatar">Qatar</option>
+                      <option value="Reunion">Reunion</option>
+                      <option value="Romania">Romania</option>
+                      <option value="Russian Federation">
+                        Russian Federation
+                      </option>
+                      <option value="Rwanda">Rwanda</option>
+                      <option value="Saint Helena">Saint Helena</option>
+                      <option value="Saint Kitts and Nevis">
+                        Saint Kitts and Nevis
+                      </option>
+                      <option value="Saint Lucia">Saint Lucia</option>
+                      <option value="Saint Pierre and Miquelon">
+                        Saint Pierre and Miquelon
+                      </option>
+                      <option value="Saint Vincent and The Grenadines">
+                        Saint Vincent and The Grenadines
+                      </option>
+                      <option value="Samoa">Samoa</option>
+                      <option value="San Marino">San Marino</option>
+                      <option value="Sao Tome and Principe">
+                        Sao Tome and Principe
+                      </option>
+                      <option value="Saudi Arabia">Saudi Arabia</option>
+                      <option value="Senegal">Senegal</option>
+                      <option value="Serbia">Serbia</option>
+                      <option value="Seychelles">Seychelles</option>
+                      <option value="Sierra Leone">Sierra Leone</option>
+                      <option value="Singapore">Singapore</option>
+                      <option value="Slovakia">Slovakia</option>
+                      <option value="Slovenia">Slovenia</option>
+                      <option value="Solomon Islands">Solomon Islands</option>
+                      <option value="Somalia">Somalia</option>
+                      <option value="South Africa">South Africa</option>
 
-                    <option value="Spain">Spain</option>
-                    <option value="Sri Lanka">Sri Lanka</option>
-                    <option value="Sudan">Sudan</option>
-                    <option value="Suriname">Suriname</option>
+                      <option value="Spain">Spain</option>
+                      <option value="Sri Lanka">Sri Lanka</option>
+                      <option value="Sudan">Sudan</option>
+                      <option value="Suriname">Suriname</option>
 
-                    <option value="Swaziland">Swaziland</option>
-                    <option value="Sweden">Sweden</option>
-                    <option value="Switzerland">Switzerland</option>
+                      <option value="Swaziland">Swaziland</option>
+                      <option value="Sweden">Sweden</option>
+                      <option value="Switzerland">Switzerland</option>
 
-                    <option value="Taiwan">Taiwan</option>
-                    <option value="Tajikistan">Tajikistan</option>
+                      <option value="Taiwan">Taiwan</option>
+                      <option value="Tajikistan">Tajikistan</option>
 
-                    <option value="Thailand">Thailand</option>
-                    <option value="Timor-leste">Timor-leste</option>
-                    <option value="Togo">Togo</option>
-                    <option value="Tokelau">Tokelau</option>
-                    <option value="Tonga">Tonga</option>
-                  </Select>
-                </Box>
-                <Box>
-                  <Text
-                    textAlign={"left"}
-                    mb="8px"
-                    textTransform={"uppercase"}
-                    fontSize="14px"
-                  >
-                    currency
-                  </Text>
-                  <Select placeholder="inr" textTransform={"uppercase"}>
-                    <option value="AFN">AFN</option>
-                    <option value="ALL">ALL</option>
-                    <option value="DZD">DZD</option>
-                    <option value="AOA">AOA</option>
-                    <option value="ARS">ARS</option>
-                    <option value="AMD">AMD</option>
-                    <option value="AWG">AWG</option>
-                    <option value="AUD">AUD</option>
-                    <option value="AZN">AZN</option>
-                    <option value="BSD">BSD</option>
-                    <option value="BHD">BHD</option>
-                    <option value="BDT">BDT</option>
-                    <option value="BBD">BBD</option>
-                    <option value="BYR">BYR</option>
-                    <option value="BEF">BEF</option>
-                    <option value="BZD">BZD</option>
-                    <option value="BMD">BMD</option>
-                    <option value="BTN">BTN</option>
-                    <option value="BTC">BTC </option>
-                    <option value="BOB">BOB</option>
-                    <option value="BWP">BWP</option>
-                    <option value="BRL">BRL</option>
-                    <option value="GBP">GBP </option>
-                    <option value="BND">BND</option>
-                    <option value="BGN">BGN</option>
-                    <option value="BIF">BIF</option>
-                    <option value="KHR">KHR</option>
-                    <option value="CAD">CAD</option>
-                    <option value="CVE">CVE </option>
-                    <option value="KYD">KYD </option>
-                    <option value="XOF">XOF </option>
-                    <option value="XAF">XAF </option>
-                    <option value="XPF">XPF</option>
-                    <option value="CLP">CLP</option>
-                    <option value="CNY">CNY</option>
-                    <option value="COP">COP</option>
-                    <option value="KMF">KMF</option>
-                    <option value="CDF">CDF</option>
-                    <option value="CRC">CRC </option>
-                    <option value="HRK">HRK</option>
-                    <option value="CUC">CUC </option>
-                    <option value="CZK">CZK </option>
-                    <option value="DKK">DKK</option>
-                    <option value="DJF">DJF</option>
-                    <option value="DOP">DOP</option>
-                    <option value="XCD">XCD </option>
-                    <option value="EGP">EGP</option>
-                    <option value="ERN">ERN</option>
-                    <option value="EEK">EEK</option>
-                    <option value="ETB">ETB</option>
-                    <option value="EUR">EUR </option>
-                    <option value="FKP">FKP </option>
-                    <option value="FJD">FJD</option>
-                    <option value="GMD">GMD</option>
-                    <option value="GEL">GEL</option>
-                    <option value="DEM">DEM</option>
-                    <option value="GHS">GHS</option>
-                    <option value="GIP">GIP</option>
-                    <option value="GRD">GRD</option>
-                    <option value="GTQ">GTQ</option>
-                    <option value="GNF">GNF</option>
-                    <option value="GYD">GYD</option>
-                    <option value="HTG">HTG</option>
-                    <option value="HNL">HNL</option>
-                    <option value="HKD">HKD </option>
-                    <option value="HUF">HUF</option>
-                    <option value="ISK">ISK</option>
-                    <option value="INR">INR</option>
-                    <option value="IDR">IDR</option>
-                    <option value="IRR">IRR</option>
-                    <option value="IQD">IQD</option>
-                    <option value="ILS">ILS </option>
-                    <option value="ITL">ITL</option>
-                    <option value="JMD">JMD</option>
-                    <option value="JPY">JPY</option>
-                    <option value="JOD">JOD</option>
-                    <option value="KZT">KZT</option>
-                    <option value="KES">KES</option>
-                    <option value="KWD">KWD</option>
-                    <option value="KGS">KGS</option>
-                    <option value="LAK">LAK</option>
-                    <option value="LVL">LVL</option>
-                    <option value="LBP">LBP</option>
-                    <option value="LSL">LSL</option>
-                    <option value="LRD">LRD</option>
-                    <option value="LYD">LYD</option>
-                    <option value="LTL">LTL</option>
-                    <option value="MOP">MOP</option>
-                    <option value="MKD">MKD</option>
-                    <option value="MGA">MGA</option>
-                    <option value="MWK">MWK</option>
-                    <option value="MYR">MYR</option>
-                    <option value="MVR">MVR</option>
-                    <option value="MRO">MRO</option>
-                    <option value="MUR">MUR</option>
-                    <option value="MXN">MXN</option>
-                    <option value="MDL">MDL</option>
-                    <option value="MNT">MNT</option>
-                    <option value="MAD">MAD</option>
-                    <option value="MZM">MZM</option>
-                    <option value="MMK">MMK</option>
-                    <option value="NAD">NAD</option>
-                    <option value="NPR">NPR</option>
-                    <option value="NIO">NIO</option>
-                    <option value="NGN">NGN</option>
-                    <option value="NOK">NOK</option>
-                    <option value="OMR">OMR</option>
-                    <option value="PKR">PKR</option>
-                    <option value="PAB">PAB</option>
-                    <option value="PYG">PYG</option>
-                    <option value="PHP">PHP</option>
-                    <option value="PLN">PLN</option>
-                    <option value="QAR">QAR</option>
-                    <option value="RON">RON</option>
-                    <option value="RUB">RUB</option>
-                    <option value="RWF">RWF</option>
-                    <option value="SVC">SVC</option>
-                    <option value="WST">WST</option>
-                    <option value="SAR">SAR</option>
-                    <option value="RSD">RSD</option>
-                    <option value="SCR">SCR</option>
-                    <option value="SGD">SGD</option>
-                    <option value="SKK">SKK</option>
-                    <option value="SOS">SOS</option>
-                    <option value="SRD">SRD</option>
-                    <option value="SZL">SZL</option>
-                    <option value="SEK">SEK</option>
-                    <option value="CHF">CHF</option>
-                    <option value="SYP">SYP</option>
-                    <option value="TJS">TJS</option>
-                    <option value="TND">TND</option>
-                    <option value="TRY">TRY</option>
-                    <option value="TMT">TMT</option>
-                    <option value="UGX">UGX</option>
-                    <option value="UAH">UAH</option>
-                  </Select>
-                </Box>
-              </HStack>
-            </Box>
+                      <option value="Thailand">Thailand</option>
+                      <option value="Timor-leste">Timor-leste</option>
+                      <option value="Togo">Togo</option>
+                      <option value="Tokelau">Tokelau</option>
+                      <option value="Tonga">Tonga</option>
+                    </Select>
+                  </Box>
+                  <Box>
+                    <Text
+                      textAlign={"left"}
+                      mb="8px"
+                      textTransform={"uppercase"}
+                      fontSize="14px"
+                    >
+                      currency
+                    </Text>
+                    <Select placeholder="inr" textTransform={"uppercase"}>
+                      <option value="AFN">AFN</option>
+                      <option value="ALL">ALL</option>
+                      <option value="DZD">DZD</option>
+                      <option value="AOA">AOA</option>
+                      <option value="ARS">ARS</option>
+                      <option value="AMD">AMD</option>
+                      <option value="AWG">AWG</option>
+                      <option value="AUD">AUD</option>
+                      <option value="AZN">AZN</option>
+                      <option value="BSD">BSD</option>
+                      <option value="BHD">BHD</option>
+                      <option value="BDT">BDT</option>
+                      <option value="BBD">BBD</option>
+                      <option value="BYR">BYR</option>
+                      <option value="BEF">BEF</option>
+                      <option value="BZD">BZD</option>
+                      <option value="BMD">BMD</option>
+                      <option value="BTN">BTN</option>
+                      <option value="BTC">BTC </option>
+                      <option value="BOB">BOB</option>
+                      <option value="BWP">BWP</option>
+                      <option value="BRL">BRL</option>
+                      <option value="GBP">GBP </option>
+                      <option value="BND">BND</option>
+                      <option value="BGN">BGN</option>
+                      <option value="BIF">BIF</option>
+                      <option value="KHR">KHR</option>
+                      <option value="CAD">CAD</option>
+                      <option value="CVE">CVE </option>
+                      <option value="KYD">KYD </option>
+                      <option value="XOF">XOF </option>
+                      <option value="XAF">XAF </option>
+                      <option value="XPF">XPF</option>
+                      <option value="CLP">CLP</option>
+                      <option value="CNY">CNY</option>
+                      <option value="COP">COP</option>
+                      <option value="KMF">KMF</option>
+                      <option value="CDF">CDF</option>
+                      <option value="CRC">CRC </option>
+                      <option value="HRK">HRK</option>
+                      <option value="CUC">CUC </option>
+                      <option value="CZK">CZK </option>
+                      <option value="DKK">DKK</option>
+                      <option value="DJF">DJF</option>
+                      <option value="DOP">DOP</option>
+                      <option value="XCD">XCD </option>
+                      <option value="EGP">EGP</option>
+                      <option value="ERN">ERN</option>
+                      <option value="EEK">EEK</option>
+                      <option value="ETB">ETB</option>
+                      <option value="EUR">EUR </option>
+                      <option value="FKP">FKP </option>
+                      <option value="FJD">FJD</option>
+                      <option value="GMD">GMD</option>
+                      <option value="GEL">GEL</option>
+                      <option value="DEM">DEM</option>
+                      <option value="GHS">GHS</option>
+                      <option value="GIP">GIP</option>
+                      <option value="GRD">GRD</option>
+                      <option value="GTQ">GTQ</option>
+                      <option value="GNF">GNF</option>
+                      <option value="GYD">GYD</option>
+                      <option value="HTG">HTG</option>
+                      <option value="HNL">HNL</option>
+                      <option value="HKD">HKD </option>
+                      <option value="HUF">HUF</option>
+                      <option value="ISK">ISK</option>
+                      <option value="INR">INR</option>
+                      <option value="IDR">IDR</option>
+                      <option value="IRR">IRR</option>
+                      <option value="IQD">IQD</option>
+                      <option value="ILS">ILS </option>
+                      <option value="ITL">ITL</option>
+                      <option value="JMD">JMD</option>
+                      <option value="JPY">JPY</option>
+                      <option value="JOD">JOD</option>
+                      <option value="KZT">KZT</option>
+                      <option value="KES">KES</option>
+                      <option value="KWD">KWD</option>
+                      <option value="KGS">KGS</option>
+                      <option value="LAK">LAK</option>
+                      <option value="LVL">LVL</option>
+                      <option value="LBP">LBP</option>
+                      <option value="LSL">LSL</option>
+                      <option value="LRD">LRD</option>
+                      <option value="LYD">LYD</option>
+                      <option value="LTL">LTL</option>
+                      <option value="MOP">MOP</option>
+                      <option value="MKD">MKD</option>
+                      <option value="MGA">MGA</option>
+                      <option value="MWK">MWK</option>
+                      <option value="MYR">MYR</option>
+                      <option value="MVR">MVR</option>
+                      <option value="MRO">MRO</option>
+                      <option value="MUR">MUR</option>
+                      <option value="MXN">MXN</option>
+                      <option value="MDL">MDL</option>
+                      <option value="MNT">MNT</option>
+                      <option value="MAD">MAD</option>
+                      <option value="MZM">MZM</option>
+                      <option value="MMK">MMK</option>
+                      <option value="NAD">NAD</option>
+                      <option value="NPR">NPR</option>
+                      <option value="NIO">NIO</option>
+                      <option value="NGN">NGN</option>
+                      <option value="NOK">NOK</option>
+                      <option value="OMR">OMR</option>
+                      <option value="PKR">PKR</option>
+                      <option value="PAB">PAB</option>
+                      <option value="PYG">PYG</option>
+                      <option value="PHP">PHP</option>
+                      <option value="PLN">PLN</option>
+                      <option value="QAR">QAR</option>
+                      <option value="RON">RON</option>
+                      <option value="RUB">RUB</option>
+                      <option value="RWF">RWF</option>
+                      <option value="SVC">SVC</option>
+                      <option value="WST">WST</option>
+                      <option value="SAR">SAR</option>
+                      <option value="RSD">RSD</option>
+                      <option value="SCR">SCR</option>
+                      <option value="SGD">SGD</option>
+                      <option value="SKK">SKK</option>
+                      <option value="SOS">SOS</option>
+                      <option value="SRD">SRD</option>
+                      <option value="SZL">SZL</option>
+                      <option value="SEK">SEK</option>
+                      <option value="CHF">CHF</option>
+                      <option value="SYP">SYP</option>
+                      <option value="TJS">TJS</option>
+                      <option value="TND">TND</option>
+                      <option value="TRY">TRY</option>
+                      <option value="TMT">TMT</option>
+                      <option value="UGX">UGX</option>
+                      <option value="UAH">UAH</option>
+                    </Select>
+                  </Box>
+                </HStack>
+              </Box>
 
-            <br />
+              <br />
 
-            <Box w="80%" m="0px auto">
-              <Button w="100%" colorScheme="green" borderRadius={0}>
-                Create Free Account
-              </Button>
-            </Box>
+              <Box w="80%" m="0px auto">
+                <Button
+                  w="100%"
+                  colorScheme="green"
+                  borderRadius={0}
+                  type="submit"
+                >
+                  Create Free Account
+                </Button>
+              </Box>
+            </form>
+
             <Text
               my="20px"
               fontSize={"12px"}
@@ -617,14 +623,16 @@ export const Sign = () => {
               Already have an account
             </Text>
             <Box w="80%" m="0px auto">
-              <Button
-                variant="outline"
-                w="100%"
-                colorScheme="green"
-                borderRadius={0}
-              >
-                Login
-              </Button>
+              <Link to="/login">
+                <Button
+                  variant="outline"
+                  w="100%"
+                  colorScheme="green"
+                  borderRadius={0}
+                >
+                  Login
+                </Button>
+              </Link>
             </Box>
             <br />
           </Box>
