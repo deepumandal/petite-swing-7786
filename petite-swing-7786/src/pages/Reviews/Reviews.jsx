@@ -4,7 +4,7 @@ import PerReview from "./PerReview";
 import { reviews } from "./reviewsConstants";
 const Reviews = () => {
   return (
-    <Box mb="10%">
+    <Box mb="10%" p="2% 2%">
       {/* Top */}
       <Box w="80%" m="auto" fontWeight="400" textAlign="center">
         <Heading fontSize={{ md: "35px", sm: "20px" }}>Bonsai Reviews</Heading>

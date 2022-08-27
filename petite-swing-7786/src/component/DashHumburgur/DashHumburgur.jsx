@@ -9,8 +9,14 @@ import {
     DrawerCloseButton,
     useDisclosure,
     Button,
+    Box,
+    VStack,
+    Text,
   } from '@chakra-ui/react'
 import { HamburgerIcon } from '@chakra-ui/icons'
+import DashLeft from '../DashLeft/DashLeft'
+import DashLogo from '../DashLogo/DashLogo'
+import DashLists from '../DashLists/DashLists'
 
 
 const DashHumburgur = () => {
@@ -41,7 +47,48 @@ const DashHumburgur = () => {
       
                 <DrawerBody>
 
-245
+
+                <Box w={"100%"} >
+        <VStack
+      bg={"white"}
+      
+      w={"100%"}
+     
+      
+    > 
+      <DashLogo />
+      <DashLists />
+      <Box
+        m={"auto"}
+        w={"180px"}
+        boxShadow={"rgba(149, 157, 165, 0.2) 0px 8px 24px"}
+        // border={"1px"}
+        bg={"#f2fbf9"}
+        p={4}
+      >
+        <Text
+          cursor={"pointer"}
+          fontSize={"12px"}
+          border={"1px"}
+          borderColor={"#3fc5a6"}
+          color={"#3fc5a6"}
+          p={"5px"}
+        >
+          Get One Months Free
+        </Text>
+      </Box>
+    </VStack>
+         
+    </Box>
+
+
+
+
+
+
+
+
+
                 </DrawerBody>
       
               </DrawerContent>

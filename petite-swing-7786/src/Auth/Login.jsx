@@ -22,6 +22,9 @@ import { auth, signInwithGgogle } from "./firebase";
 export const Login = () => {
 
 const location = useLocation()
+
+location.state = location.pathname
+  
   const dispatch = useDispatch();
   const [password, setpassword] = useState("");
   const [email, setemail] = useState("");
@@ -29,14 +32,14 @@ const location = useLocation()
   
   const handlesubmit = (e) => {
     e.preventDefault();
-    // location.state = location.pathname
     dispatch(
       loginAPI({
         email,
         password,
       })
     ).then(() => {
-      // navigate(location.state);
+      
+      navigate('/dash');
     });
   };
 
@@ -51,9 +54,9 @@ const location = useLocation()
     }
   };
 
-// useEffect(() => {
-//   navigate(location.pathname);
-// }, [handlesubmit])
+useEffect(() => {
+  navigate(location.pathname);
+}, [handlesubmit])
 
 
   return (
