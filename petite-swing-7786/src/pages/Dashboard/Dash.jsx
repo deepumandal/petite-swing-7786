@@ -3,8 +3,6 @@ import React, { useContext } from "react";
 
 import { Route, Routes, useLocation } from "react-router-dom";
 
-import { Route, Routes } from "react-router-dom";
-import Dashboard from "../../component/AppBonsai/Dashboard/Dashboard";
 
 import DashHumburgur from "../../component/DashHumburgur/DashHumburgur";
 import DashLeft from "../../component/DashLeft/DashLeft";
