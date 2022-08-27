@@ -32,7 +32,7 @@ const FullScreenTemplateNav = () => {
       <AccordionItem border={"0px"} isFocusable={true}>
         <h2>
           <AccordionButton >
-            <Link to='/contract'>
+            <Link to='/contractTemplate'>
             <Box flex="1" textAlign="left">
               Template
             </Box>
