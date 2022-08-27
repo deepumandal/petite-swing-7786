@@ -30,7 +30,7 @@ const Pricing = () => {
   return (
     <div className={styles.bg_shape}>
       {/* plans and pricing top */}
-      <Box p="10px 10px" w={{ lg: "60%", sm: "110%" }} margin="auto">
+      <Box p="10px 10px" w={{ lg: "60%", sm: "110%" }} margin="auto" mt="10%">
         <Grid
           p="20px 20px"
           templateColumns="repeat(2, 1fr)"
