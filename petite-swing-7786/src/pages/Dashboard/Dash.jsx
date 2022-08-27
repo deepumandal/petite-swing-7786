@@ -1,17 +1,13 @@
 import { Box, Button, Flex, Input, Spacer } from "@chakra-ui/react";
 import React, { useContext } from "react";
-
 import { Route, Routes, useLocation } from "react-router-dom";
-
 import Dashboard from "../../component/AppBonsai/Dashboard/Dashboard";
-
 import DashHumburgur from "../../component/DashHumburgur/DashHumburgur";
 import DashLeft from "../../component/DashLeft/DashLeft";
 import Dashright from "../../component/Dashright/Dashright";
 import { useMediaQuery } from "@chakra-ui/react";
 import { HellobonsaiContext } from "../../Context/HellobonsaiContext";
 import { Task } from "../Task/Task";
-
 import Layout from "../../component/AppBonsai/Layout/Layout";
 
 const Dash = () => {
