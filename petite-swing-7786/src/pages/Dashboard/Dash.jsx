@@ -1,19 +1,29 @@
 import { Box, Button, Flex, Input, Spacer } from "@chakra-ui/react";
 import React, { useContext } from "react";
+
+import { Route, Routes, useLocation } from "react-router-dom";
+
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "../../component/AppBonsai/Dashboard/Dashboard";
+
 import DashHumburgur from "../../component/DashHumburgur/DashHumburgur";
 import DashLeft from "../../component/DashLeft/DashLeft";
 import Dashright from "../../component/Dashright/Dashright";
 import { useMediaQuery } from "@chakra-ui/react";
 import { HellobonsaiContext } from "../../Context/HellobonsaiContext";
 import { Task } from "../Task/Task";
+
+import { BsShopWindow } from "react-icons/bs";
+import Dashboard from "../../component/AppBonsai/Dashboard/Dashboard";
+
 import Layout from "../../component/AppBonsai/Layout/Layout";
+
 
 const Dash = () => {
   const [isLarger480] = useMediaQuery(`(max-width: 480px)`);
 const {route} = useContext(HellobonsaiContext)
-console.log(route)
+const loc = useLocation()
+console.log(loc)
   return (
     <>
       <Flex h={"60px"} justifyContent={"space-between"} >

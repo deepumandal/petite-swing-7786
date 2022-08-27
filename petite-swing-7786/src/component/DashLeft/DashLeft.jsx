@@ -17,7 +17,7 @@ const DashLeft = () => {
       top={0}
       bottom={0}
       p={6}
-      borderRight={"1px"}
+      borderWidth={"1px"}
     > 
       <DashLogo />
       <DashLists />

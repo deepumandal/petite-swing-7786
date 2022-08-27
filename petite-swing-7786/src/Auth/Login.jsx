@@ -30,7 +30,7 @@ export const Login = () => {
 
 const location = useLocation()
 
-
+location.state = location.pathname
   const clientId =
     "175168483203-8td0h9fbnrfjfpj4uf1rpc5j79kukgfm.apps.googleusercontent.com";
 
@@ -40,20 +40,19 @@ const location = useLocation()
   const navigate = useNavigate();
   const handlesubmit = (e) => {
     e.preventDefault();
-    location.state = location.pathname
+    
     dispatch(
       loginAPI({
         email,
         password,
       })
     ).then(() => {
-      // navigate(location.state);
+      
+      navigate('/dash');
     });
   };
 
-useEffect(() => {
-  navigate(location.pathname);
-}, [handlesubmit])
+
 
 
   return (

@@ -6,11 +6,11 @@ const RequireAuth = ({ children }) => {
   const isAuth = useSelector((state) => state.auth.data.isAuthenticated);
 
   const { pathname } = useLocation();
-console.log("pathname", pathname)
+
   if (isAuth) {
     return children;
   } else {
-    return <Navigate to="/login" state={{ from: pathname }} replace />;
+    return <Navigate to="/login" state={pathname} replace />;
   }
 };
 

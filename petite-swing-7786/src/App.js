@@ -7,22 +7,26 @@ import { Sign } from "./Auth/Sign";
 import Footer from "./component/Footer/Footer";
 import Pricing from "./pages/Price/Pricing";
 import Reviews from "./pages/Reviews/Reviews";
-import Dashboard from "./component/AppBonsai/Dashboard/Dashboard";
 import RequireAuth from "./Auth/RequiresAuth";
 import Dash from "./pages/Dashboard/Dash";
+
 import Layout from "./component/AppBonsai/Layout/Layout";
 import ContractTemp from "./pages/Contract-Template/ContractTemp";
+
 
 function App() {
   const location = useLocation();
 
-  <Routes>
-    <Route path={"*"} element={<Home />} />
-  </Routes>;
+ 
 
   if (location.pathname === "/dash") {
-    return <Dash />;
-    // return <RequireAuth> <Dash /> </RequireAuth>
+
+ return <Routes>
+   <Route path="/dash" element={ <RequireAuth>  <Dash /> </RequireAuth> } />
+
+</Routes>
+
+// return <Dash />
   } else if (location.pathname === "/login") {
     return <Login />;
   }
@@ -36,7 +40,7 @@ function App() {
         <Route path={"/sign"} element={<Sign />} />
         <Route path={"/pricing"} element={<Pricing />} />
         <Route path="/reviews" element={<Reviews />} />
-        <Route path="/dash" element={<Dash />} />
+        {/* <Route path="/dash" element={<Dash />} /> */}
         {/* <Route path="/dashboard" element={ <Dashboard />} /> */}
         <Route path="/" element={<ContractTemp />} />
       </Routes>
