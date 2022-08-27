@@ -4,6 +4,7 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 const Card = ({ type, name, image }) => {
   return (
     <Box
+    
       color="grey"
       p="10px 10px"
       borderRadius="5px"

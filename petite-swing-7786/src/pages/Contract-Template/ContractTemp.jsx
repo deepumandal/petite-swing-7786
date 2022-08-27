@@ -1,25 +1,53 @@
 import React, { useState } from "react";
 import { Box, Image, Text, Select, Grid, Button } from "@chakra-ui/react";
-
-import { templates, stepa } from "./conTempConstatnts";
+import axios from "axios";
+import { stepa } from "./conTempConstatnts";
 import FilterBox from "./FilterBox";
 import Card from "./Card";
 import Process1 from "./Process1";
 import Process345 from "./Process345";
 import Process2 from "./Process2";
 import Steps from "./Steps";
+import { useEffect } from "react";
 const ContractTemp = () => {
-  const [page, setPage] = useState(1);
-
+  const [page, setPage] = useState(0);
+  const [conData, setConData] = useState([]);
   const handlePrev = () => {
-    setPage(page - 1);
+    setPage(page - 15);
   };
 
   const handleNext = () => {
-    setPage(page + 1);
+    setPage(page + 15);
   };
+
+  const getData = () => {
+    axios
+      .get("http://localhost:8000/contract")
+      .then((r) => {
+        // console.log(r.data);
+        setConData(r.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+  const paginatedData = (page) => {
+    axios
+      .get(`http://localhost:8000/contract?skip=${page}`)
+      .then((r) => {
+        // console.log(r.data);
+        setConData(r.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+  useEffect(() => {
+    getData();
+    paginatedData(page);
+  }, [page]);
   return (
-    <Box>
+    <Box textAlign="left" mt="10%">
       {/* Top */}
       <Box
         p="20px 20px"
@@ -112,8 +140,8 @@ const ContractTemp = () => {
             }}
             gap={5}
           >
-            {templates.map((e) => (
-              <Card type={e.type} name={e.name} image={e.img} />
+            {conData.map((e) => (
+              <Card type={e.type} name={e.name} image={e.img} id={e.id} />
             ))}
           </Grid>
           {/* pagination  */}
@@ -131,6 +159,7 @@ const ContractTemp = () => {
             </Button>
 
             <Button
+              disabled={conData.length < 15}
               onClick={handleNext}
               mt="10%"
               border="1px solid"
