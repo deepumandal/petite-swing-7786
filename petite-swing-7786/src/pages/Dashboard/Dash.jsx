@@ -4,6 +4,10 @@ import React, { useContext } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 
+
+import Dashboard from "../../component/AppBonsai/Dashboard/Dashboard";
+
+
 import DashHumburgur from "../../component/DashHumburgur/DashHumburgur";
 import DashLeft from "../../component/DashLeft/DashLeft";
 import Dashright from "../../component/Dashright/Dashright";
@@ -11,8 +15,8 @@ import { useMediaQuery } from "@chakra-ui/react";
 import { HellobonsaiContext } from "../../Context/HellobonsaiContext";
 import { Task } from "../Task/Task";
 
-import { BsShopWindow } from "react-icons/bs";
-import Dashboard from "../../component/AppBonsai/Dashboard/Dashboard";
+
+
 
 import Layout from "../../component/AppBonsai/Layout/Layout";
 
@@ -38,10 +42,12 @@ console.log(loc)
      <Flex>
      <Box w={{base: "0%", sm : "20%"}}></Box>
       <Box
+     
       
         position={{ base: "static", sm: "relative" }}
         m={"auto"}
         w={{ sm: "70%", base: "90%" }}
+        my={"20px"}
       
       >
         {route=="/dashboard" && <Dashboard />}
