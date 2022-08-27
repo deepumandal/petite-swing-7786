@@ -14,6 +14,8 @@
     "apexcharts": "^3.35.5",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
+    "firebase": "^9.9.3",
+    "firebase-auth": "^0.1.2",
     "framer-motion": "^7.2.0",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",

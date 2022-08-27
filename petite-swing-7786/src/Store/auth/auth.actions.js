@@ -1,4 +1,3 @@
-// Auth Actions here
 import axios from "axios";
 import {
   AUTH_SIGN_IN_ERROR,
