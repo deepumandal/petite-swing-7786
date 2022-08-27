@@ -9,13 +9,13 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Auth.module.css";
 import { Foot } from "./Foot";
 import { Navabr } from "./Navabr";
 import { GoogleLogin } from "react-google-login";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { loginAPI } from "../Store/auth/auth.actions";
 
 export const Login = () => {
@@ -28,6 +28,9 @@ export const Login = () => {
     // console.log(err);
   };
 
+const location = useLocation()
+
+
   const clientId =
     "175168483203-8td0h9fbnrfjfpj4uf1rpc5j79kukgfm.apps.googleusercontent.com";
 
@@ -37,15 +40,21 @@ export const Login = () => {
   const navigate = useNavigate();
   const handlesubmit = (e) => {
     e.preventDefault();
+    location.state = location.pathname
     dispatch(
       loginAPI({
         email,
         password,
       })
     ).then(() => {
-      navigate("/");
+      // navigate(location.state);
     });
   };
+
+useEffect(() => {
+  navigate(location.pathname);
+}, [handlesubmit])
+
 
   return (
     <>
