@@ -30,6 +30,7 @@ import {
   HamburgerIcon,
 } from "@chakra-ui/icons";
 import Bonsaicategory from "../Bonsaicategory.jsx/Bonsaicategory";
+import { Link } from "react-router-dom";
 
 const Hamburgur = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -214,9 +215,11 @@ const Hamburgur = () => {
                     letterSpacing={"0.9px"}
                     fontFamily={"sans-serif"}
                   >
+                    <Link to='</Link>'>
                     <Box flex="1" textAlign="left">
                       Templates
                     </Box>
+                    </Link>
                     <AccordionIcon />
                   </AccordionButton>
                 </h2>

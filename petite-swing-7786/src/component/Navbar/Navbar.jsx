@@ -80,7 +80,7 @@ const [ismobileScreen] = useMediaQuery(`(max-width: 480px)`)
         <Spacer />
 
 
-{/* check is mobile screen  */}
+
 {
   ismobileScreen? <Hamburgur /> : <FullScreenNav />
 }
