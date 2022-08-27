@@ -215,7 +215,7 @@ const Hamburgur = () => {
                     letterSpacing={"0.9px"}
                     fontFamily={"sans-serif"}
                   >
-                    <Link to='</Link>'>
+                    <Link to='contractTemplate'>
                     <Box flex="1" textAlign="left">
                       Templates
                     </Box>
