@@ -1,17 +1,23 @@
-import { Box, Text, VStack } from "@chakra-ui/react";
-import React from "react";
+import { Box, Menu, useMediaQuery } from '@chakra-ui/react'
+import React from 'react'
+import {  Text, VStack } from "@chakra-ui/react";
+
 import DashLists from "../DashLists/DashLists";
 import DashLogo from "../DashLogo/DashLogo";
 
-const Menu = () => {
+
+const DashLeft = () => {
+    
   return (
-    <VStack
-      bg={"red"}
+    <Box w={"100%"} >
+        <VStack
+      bg={"white"}
       position={"fixed"}
       left={0}
       top={0}
       bottom={0}
       p={6}
+      borderRight={"1px"}
     > 
       <DashLogo />
       <DashLists />
@@ -35,7 +41,9 @@ const Menu = () => {
         </Text>
       </Box>
     </VStack>
-  );
-};
+         
+    </Box>
+  )
+}
 
-export default Menu;
+export default DashLeft

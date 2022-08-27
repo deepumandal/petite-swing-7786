@@ -19,7 +19,10 @@ const Reviews = () => {
       <br />
       {/* Review Part */}
       <Box>
-        <Grid templateColumns="repeat(2, 1fr)" gap={5}>
+        <Grid
+          templateColumns={{ lg: "repeat(2, 1fr)", sm: "repeat(1, 1fr)" }}
+          gap={5}
+        >
           {reviews.map((e) => (
             <GridItem>
               <PerReview para={e.perRev} name={e.name} />

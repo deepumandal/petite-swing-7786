@@ -11,46 +11,38 @@ import Dashboard from "./component/AppBonsai/Dashboard/Dashboard";
 import RequireAuth from "./Auth/RequiresAuth";
 import Dash from "./pages/Dashboard/Dash";
 import Layout from "./component/AppBonsai/Layout/Layout";
-
+import ContractTemp from "./pages/Contract-Template/ContractTemp";
 
 function App() {
+  const location = useLocation();
 
-  const location =  useLocation()
+  <Routes>
+    <Route path={"*"} element={<Home />} />
+  </Routes>;
 
-
-if(location.pathname==="/dash"){
-  return <Dash />
-}
-else if(location.pathname==="/login"){
-  return <Login />
-}
+  if (location.pathname === "/dash") {
+    return <Dash />;
+    // return <RequireAuth> <Dash /> </RequireAuth>
+  } else if (location.pathname === "/login") {
+    return <Login />;
+  }
 
   return (
     <div className="App">
       <Navbar />
-      <Dashboard/>
-      <Layout type='Proposal' tableHeadings={['Title','Client','Sent','Accepted']}/>
-      <Layout type='Contract' tableHeadings={['TItle','Client','Project','Created','Sent']}/>
-      <Layout type='Project' tableHeadings={['Title','Client','Start Date','Due','Paid']}/>
+      <Routes>
+        <Route path={"/"} element={<Home />} />
+        <Route path={"/login"} element={<Login />} />
+        <Route path={"/sign"} element={<Sign />} />
+        <Route path={"/pricing"} element={<Pricing />} />
+        <Route path="/reviews" element={<Reviews />} />
+        <Route path="/dash" element={<Dash />} />
+        {/* <Route path="/dashboard" element={ <Dashboard />} /> */}
+        <Route path="/" element={<ContractTemp />} />
+      </Routes>
 
-
-        <Routes>
-          <Route path={"/"} element={  <Home />} />
-          <Route path={"/login"} element={<Login />} />
-          <Route path={"/sign"} element={<Sign />} />
-          <Route path={"/pricing"} element={<Pricing />} />
-          <Route path="/reviews" element={<Reviews />} />
-          <Route path='/dash' element={ <Dash /> } />
-          <Route path='/dashboard' element={ <Dashboard /> } />
-        </Routes>
-        <br />
-        <br />
-        <br />
-        <br />
-        <Footer />
-      
-      
+      <Footer />
     </div>
   );
 }
-export default App
+export default App;
