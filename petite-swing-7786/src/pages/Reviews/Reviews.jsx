@@ -4,7 +4,7 @@ import PerReview from "./PerReview";
 import { reviews } from "./reviewsConstants";
 const Reviews = () => {
   return (
-    <Box mb="10%">
+    <Box mb="10%" p="2% 2%">
       {/* Top */}
       <Box w="80%" m="auto" fontWeight="400" textAlign="center">
         <Heading fontSize={{ md: "35px", sm: "20px" }}>Bonsai Reviews</Heading>
@@ -19,7 +19,10 @@ const Reviews = () => {
       <br />
       {/* Review Part */}
       <Box>
-        <Grid templateColumns="repeat(2, 1fr)" gap={5}>
+        <Grid
+          templateColumns={{ lg: "repeat(2, 1fr)", sm: "repeat(1, 1fr)" }}
+          gap={5}
+        >
           {reviews.map((e) => (
             <GridItem>
               <PerReview para={e.perRev} name={e.name} />

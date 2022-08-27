@@ -1,6 +1,10 @@
 import { Box, Button, Flex, Input, Spacer } from "@chakra-ui/react";
 import React, { useContext } from "react";
+
 import { Route, Routes, useLocation } from "react-router-dom";
+
+import { Route, Routes } from "react-router-dom";
+import Dashboard from "../../component/AppBonsai/Dashboard/Dashboard";
 
 import DashHumburgur from "../../component/DashHumburgur/DashHumburgur";
 import DashLeft from "../../component/DashLeft/DashLeft";
@@ -8,8 +12,12 @@ import Dashright from "../../component/Dashright/Dashright";
 import { useMediaQuery } from "@chakra-ui/react";
 import { HellobonsaiContext } from "../../Context/HellobonsaiContext";
 import { Task } from "../Task/Task";
+
 import { BsShopWindow } from "react-icons/bs";
 import Dashboard from "../../component/AppBonsai/Dashboard/Dashboard";
+
+import Layout from "../../component/AppBonsai/Layout/Layout";
+
 
 const Dash = () => {
   const [isLarger480] = useMediaQuery(`(max-width: 480px)`);
@@ -40,9 +48,9 @@ console.log(loc)
       >
         {route=="/dashboard" && <Dashboard />}
         {route=="/clients" && <Dashboard />}
-        {route=="/Projects" && <Dashboard />}
-        {route=="/proposals" && <Dashboard />}
-        {route=="/contracts" && <Dashboard />}
+        {route=="/Projects" && <Layout type='Project' tableHeadings={['Title','Client','Start Date','Due','Paid']}/>}
+        {route=="/proposals" && <Layout type='Proposal' tableHeadings={['Title','Client','Sent','Accepted']}/>}
+        {route=="/contracts" && <Layout type='Contract' tableHeadings={['TItle','Client','Project','Created','Sent']}/>}
         {route=="/invoices" && <Dashboard />}
         {route=="/timeTracking" && <Dashboard />}
         {route=="/tasks" && <Task />}

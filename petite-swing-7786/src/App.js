@@ -10,8 +10,8 @@ import Reviews from "./pages/Reviews/Reviews";
 import RequireAuth from "./Auth/RequiresAuth";
 import Dash from "./pages/Dashboard/Dash";
 
-
-
+import Layout from "./component/AppBonsai/Layout/Layout";
+import ContractTemp from "./pages/Contract-Template/ContractTemp";
 
 
 function App() {
@@ -28,14 +28,12 @@ function App() {
 
 // return <Dash />
   } else if (location.pathname === "/login") {
-    return <Login />
+    return <Login />;
   }
 
   return (
     <div className="App">
       <Navbar />
-
-
       <Routes>
         <Route path={"/"} element={<Home />} />
         <Route path={"/login"} element={<Login />} />
@@ -44,11 +42,10 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
         {/* <Route path="/dash" element={<Dash />} /> */}
         {/* <Route path="/dashboard" element={ <Dashboard />} /> */}
+        <Route path="/" element={<ContractTemp />} />
       </Routes>
 
       <Footer />
-
-
     </div>
   );
 }

@@ -1,0 +1,18 @@
+{
+    "charts1":{
+        "options": {
+          "chart": {
+            "type":"bar"
+          },
+          "xaxis": {
+            "categories": ["Aug 16","Aug 18","Aug 20","Aug 22","Aug 24","Aug 26"]
+          }
+        },
+        "series": [
+          {
+            "name": "Paid",
+            "data": [0,0,0,0,1,0]
+          }
+        ]
+      }
+}

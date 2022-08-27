@@ -1,0 +1,30 @@
+{
+    "charts":{
+        "options": {
+          "chart": {
+            "id": "basic-bar"
+          },
+          "xaxis": {
+            "categories": ["Feb","Mar","Apr","May","Jun","Jul","Aug"]
+          },
+          "stroke": {
+            "curve": "smooth"
+          }
+        },
+        "series": [
+          {
+            "type":"area",
+            "name": "Paid",
+            "data": [0,0,0,0,0,0,5]
+          },
+          {
+            "name": "Expenses",
+            "data": [0,0,0,0,0,0,0]
+          },
+          {
+            "name": "Profit",
+            "data": [0,0,0,0,0,0,5]
+          }
+        ]
+      }
+}
