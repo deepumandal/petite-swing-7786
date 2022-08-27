@@ -13,20 +13,18 @@ import Dash from "./pages/Dashboard/Dash";
 import Layout from "./component/AppBonsai/Layout/Layout";
 import ContractTemp from "./pages/Contract-Template/ContractTemp";
 
-
 function App() {
   const location = useLocation();
 
- 
-
   if (location.pathname === "/dash") {
+    return (
+      <Routes>
+        {/* <Route path="/dash" element={ <RequireAuth>  <Dash /> </RequireAuth> } /> */}
+        <Route path="/dash" element={<Dash />} />
+      </Routes>
+    );
 
- return <Routes>
-   <Route path="/dash" element={ <RequireAuth>  <Dash /> </RequireAuth> } />
-
-</Routes>
-
-// return <Dash />
+    // return <Dash />
   } else if (location.pathname === "/login") {
     return <Login />;
   }

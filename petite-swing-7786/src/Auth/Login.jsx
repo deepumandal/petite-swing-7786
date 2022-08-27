@@ -20,16 +20,15 @@ import { AUTH_SUCESS_WITH_FIRE } from "../Store/auth/auth.types";
 import { auth, signInwithGgogle } from "./firebase";
 
 export const Login = () => {
+  const location = useLocation();
 
-const location = useLocation()
+  location.state = location.pathname;
 
-location.state = location.pathname
-  
   const dispatch = useDispatch();
   const [password, setpassword] = useState("");
   const [email, setemail] = useState("");
   const navigate = useNavigate();
-  
+
   const handlesubmit = (e) => {
     e.preventDefault();
     dispatch(
@@ -38,8 +37,7 @@ location.state = location.pathname
         password,
       })
     ).then(() => {
-      
-      navigate('/dash');
+      navigate("/dash");
     });
   };
 
@@ -54,10 +52,9 @@ location.state = location.pathname
     }
   };
 
-useEffect(() => {
-  navigate(location.pathname);
-}, [handlesubmit])
-
+  useEffect(() => {
+    navigate(location.pathname);
+  }, [handlesubmit]);
 
   return (
     <>
