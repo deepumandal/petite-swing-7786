@@ -180,7 +180,7 @@ const Dashboard = () => {
         </Flex>
         <Divider />
         <Grid templateColumns='repeat(2, 1fr)' gap={6} gridAutoRows='auto'>
-            <GridItem w='100%' border='1px solid grey' borderRadius='5px' colspan={8} >
+            <GridItem w='100%' borderWidth={"1px"} borderRadius='5px' colspan={8} >
                 <TableContainer>
                     <Text>Project Timeline</Text>
                         <Table variant='simple'>
@@ -226,7 +226,7 @@ const Dashboard = () => {
                 </List>
             </GridItem>
             <GridItem   colspan={8} >
-                <Box w='100%' border='1px solid grey' borderRadius='5px'>
+                <Box w='100%' borderWidth={"1px"} borderRadius='5px'>
                     <Flex justify='space-between'>
                         <Text>Income & Expenses</Text>
                         <Flex>
@@ -250,7 +250,7 @@ const Dashboard = () => {
                 </Box>
                 <br/>
                 <br/>
-                <Box w='100%' border='1px solid grey' borderRadius='5px'>
+                <Box w='100%'borderWidth={"1px"} borderRadius='5px'>
                     <Flex justify='space-between'>
                         <Text>Time Tracked</Text>
                         <Flex>
@@ -267,7 +267,7 @@ const Dashboard = () => {
                     />
                 </Box>
             </GridItem>
-            <GridItem w='100%' border='1px solid grey' borderRadius='5px' rowspan={8} colspan={4} >
+            <GridItem w='100%'borderWidth={"1px"} borderRadius='5px' rowspan={8} colspan={4} >
                 <Chrono items={items} 
                     mode="VERTICAL" 
                     borderLessCards='true' 
@@ -283,7 +283,7 @@ const Dashboard = () => {
                       }}
                  />
             </GridItem>
-            <GridItem  w='100%' border='1px solid grey' borderRadius='5px' >
+            <GridItem  w='100%'borderWidth={"1px"} borderRadius='5px' >
 
             </GridItem>
             

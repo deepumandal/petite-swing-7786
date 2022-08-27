@@ -8,11 +8,12 @@ import Dashright from "../../component/Dashright/Dashright";
 import { useMediaQuery } from "@chakra-ui/react";
 import { HellobonsaiContext } from "../../Context/HellobonsaiContext";
 import { Task } from "../Task/Task";
+import { BsShopWindow } from "react-icons/bs";
 
 const Dash = () => {
   const [isLarger480] = useMediaQuery(`(max-width: 480px)`);
 const {route} = useContext(HellobonsaiContext)
-console.log(route)
+
   return (
     <>
       <Flex h={"60px"} justifyContent={"space-between"} >
