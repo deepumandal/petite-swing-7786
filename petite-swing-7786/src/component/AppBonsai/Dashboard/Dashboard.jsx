@@ -15,12 +15,13 @@ import { getCharts, getCharts1, getItems, getProjects } from '../../../Store/das
 import StartFreeTrial from './StartFreeTrial';
 
 const Dashboard = () => {
+    const authfirebase = useSelector((state) => state.auth);
     const dispatch = useDispatch()
     const Projects = useSelector((state)=>state.dashboard.projects.data);
     const charts = useSelector((state)=>state.dashboard.charts.data);
     const charts1 = useSelector((state)=>state.dashboard.charts1.data);
     const items = useSelector((state)=>state.dashboard.items.data);
-    console.log(Projects,charts,charts1,items);
+    // console.log(Projects,charts,charts1,items);
     useEffect(()=>{
         dispatch(getProjects());
         dispatch(getCharts());
@@ -35,7 +36,7 @@ const Dashboard = () => {
                 <Image src={new Date().getHours() >= 15 ?'./good-night.svg':'./good-morning.svg'}/>
                 <Box>
                     <Box>{new Date().toDateString()}</Box>
-                    <Heading as='h4'>{new Date().getHours() >= 15 ? "Good Evening":"Good Morning"}, Name</Heading>
+                    <Heading as='h4'>{new Date().getHours() >= 15 ? "Good Evening":"Good Morning"}, {authfirebase.profileInfo.displayName}</Heading>
                 </Box>
             </Flex>
             <Flex>

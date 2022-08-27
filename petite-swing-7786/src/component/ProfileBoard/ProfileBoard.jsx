@@ -12,8 +12,10 @@ import {
   Flex,
 } from '@chakra-ui/react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
+import { useSelector } from 'react-redux';
 
 const ProfileBoard = () => {
+  const authfirebase = useSelector((state) => state.auth);
   return (
    <>
    <Menu>
@@ -30,7 +32,7 @@ const ProfileBoard = () => {
   >
     <Flex alignItems={"center"}>
 
-    <Image w={"50px"}  src={"./images/avatar.png"} />
+    <Image w={"50px"}  src={authfirebase.profileInfo.photoURL} />
     <ChevronDownIcon />
     </Flex>
      
