@@ -9,6 +9,7 @@ import {
   Spacer,
   Text,
 } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const FullScreenTemplateNav = () => {
   const [def, setDef] = useState(1);
@@ -31,9 +32,11 @@ const FullScreenTemplateNav = () => {
       <AccordionItem border={"0px"} isFocusable={true}>
         <h2>
           <AccordionButton >
+            <Link to='/contract'>
             <Box flex="1" textAlign="left">
               Template
             </Box>
+            </Link>
             <AccordionIcon />
           </AccordionButton>
         </h2>
