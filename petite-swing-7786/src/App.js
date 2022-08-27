@@ -10,6 +10,7 @@ import Reviews from "./pages/Reviews/Reviews";
 import Dashboard from "./component/AppBonsai/Dashboard/Dashboard";
 import RequireAuth from "./Auth/RequiresAuth";
 import Dash from "./pages/Dashboard/Dash";
+import Layout from "./component/AppBonsai/Layout/Layout";
 
 
 function App() {
@@ -28,6 +29,9 @@ else if(location.pathname==="/login"){
     <div className="App">
       <Navbar />
       <Dashboard/>
+      <Layout type='Proposal' tableHeadings={['Title','Client','Sent','Accepted']}/>
+      <Layout type='Contract' tableHeadings={['TItle','Client','Project','Created','Sent']}/>
+      <Layout type='Project' tableHeadings={['Title','Client','Start Date','Due','Paid']}/>
 
 
         <Routes>
