@@ -38,7 +38,7 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/dash" element={<Dash />} />
         {/* <Route path="/dashboard" element={ <Dashboard />} /> */}
-        <Route path="/" element={<ContractTemp />} />
+        <Route path="/contractTemplate" element={<ContractTemp />} />
       </Routes>
 
       <Footer />
