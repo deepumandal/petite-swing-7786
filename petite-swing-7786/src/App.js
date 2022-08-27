@@ -7,10 +7,13 @@ import { Sign } from "./Auth/Sign";
 import Footer from "./component/Footer/Footer";
 import Pricing from "./pages/Price/Pricing";
 import Reviews from "./pages/Reviews/Reviews";
-
+import Dashboard from "./component/AppBonsai/Dashboard/Dashboard";
+import RequireAuth from "./Auth/RequiresAuth";
 import Dash from "./pages/Dashboard/Dash";
+
 import Dashboard from "./component/AppBonsai/Dashboard";
 import RequireAuth from "./Auth/RequiresAuth";
+
 
 function App() {
   const location = useLocation();
@@ -30,6 +33,7 @@ function App() {
     <div className="App">
       <Navbar />
 
+
       <Routes>
         <Route path={"/"} element={<Home />} />
         <Route path={"/login"} element={<Login />} />
@@ -41,6 +45,8 @@ function App() {
       </Routes>
 
       <Footer />
+
+
     </div>
   );
 }
