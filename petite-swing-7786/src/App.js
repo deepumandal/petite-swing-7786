@@ -13,7 +13,7 @@ import Dash from "./pages/Dashboard/Dash";
 
 import Dashboard from "./component/AppBonsai/Dashboard";
 import RequireAuth from "./Auth/RequiresAuth";
-
+import ContractTemp from "./pages/Contract-Template/ContractTemp";
 
 function App() {
   const location = useLocation();
@@ -26,13 +26,12 @@ function App() {
     return <Dash />;
     // return <RequireAuth> <Dash /> </RequireAuth>
   } else if (location.pathname === "/login") {
-    return <Login />
+    return <Login />;
   }
 
   return (
     <div className="App">
       <Navbar />
-
 
       <Routes>
         <Route path={"/"} element={<Home />} />
@@ -42,11 +41,10 @@ function App() {
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/dash" element={<Dash />} />
         {/* <Route path="/dashboard" element={ <Dashboard />} /> */}
+        <Route path="/" element={<ContractTemp />} />
       </Routes>
 
       <Footer />
-
-
     </div>
   );
 }
