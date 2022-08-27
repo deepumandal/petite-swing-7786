@@ -7,8 +7,9 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom"
+import { HellobonsaiContext } from "../../Context/HellobonsaiContext";
 
 const DashLists = () => {
   const lists = [
@@ -58,7 +59,7 @@ const DashLists = () => {
       title: "",
       color: "",
       icon: "",
-      link : "/Dashboard"
+      link : ""
     },
     {
       title: "Time Tracking",
@@ -98,15 +99,21 @@ const DashLists = () => {
     },
   ];
 
+  const {set , route} =  useContext(HellobonsaiContext)
+
+const handlechangecontext = (item)=>{
+set(item)
+}
+
   return (
     <HStack >
       <ul>
         {lists.map((item, i) => {
           return (
-            <Link key={i} to={item.link}>
-            <VStack alignItems={"left"} gap={"10px"} key={i}>
+           
+            <VStack key={i} alignItems={"left"} gap={"10px"} >
               {/* <Text> {item.title} </Text> */}
-              <Flex m={0.1}>
+              <Flex onClick={()=>handlechangecontext(item.link)} m={0.1}>
                 {/* {item.icon !== "" && <Image w={"20px"} src={item.icon} />} */}
                 {item.title !== "" ? <Text
                 fontSize={"14px"}
@@ -117,7 +124,7 @@ const DashLists = () => {
                 > {item.title} </Text> : <br />}
               </Flex>
             </VStack>
-            </Link>
+           
           );
         })}
       </ul>

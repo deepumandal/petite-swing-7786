@@ -11,42 +11,43 @@ import Dashboard from "./component/AppBonsai/Dashboard/Dashboard";
 import RequireAuth from "./Auth/RequiresAuth";
 import Dash from "./pages/Dashboard/Dash";
 
+import Dashboard from "./component/AppBonsai/Dashboard";
+import RequireAuth from "./Auth/RequiresAuth";
+
 
 function App() {
+  const location = useLocation();
 
-  const location =  useLocation()
+  <Routes>
+    <Route path={"*"} element={<Home />} />
+  </Routes>;
 
-
-if(location.pathname==="/dash"){
-  return <Dash />
-}
-else if(location.pathname==="/login"){
-  return <Login />
-}
+  if (location.pathname === "/dash") {
+    return <Dash />;
+    // return <RequireAuth> <Dash /> </RequireAuth>
+  } else if (location.pathname === "/login") {
+    return <Login />
+  }
 
   return (
     <div className="App">
       <Navbar />
-      <Dashboard/>
 
 
-        <Routes>
-          <Route path={"/"} element={  <Home />} />
-          <Route path={"/login"} element={<Login />} />
-          <Route path={"/sign"} element={<Sign />} />
-          <Route path={"/pricing"} element={<Pricing />} />
-          <Route path="/reviews" element={<Reviews />} />
-          <Route path='/dash' element={ <Dash /> } />
-          <Route path='/dashboard' element={ <Dashboard /> } />
-        </Routes>
-        <br />
-        <br />
-        <br />
-        <br />
-        <Footer />
-      
-      
+      <Routes>
+        <Route path={"/"} element={<Home />} />
+        <Route path={"/login"} element={<Login />} />
+        <Route path={"/sign"} element={<Sign />} />
+        <Route path={"/pricing"} element={<Pricing />} />
+        <Route path="/reviews" element={<Reviews />} />
+        <Route path="/dash" element={<Dash />} />
+        {/* <Route path="/dashboard" element={ <Dashboard />} /> */}
+      </Routes>
+
+      <Footer />
+
+
     </div>
   );
 }
-export default App
+export default App;

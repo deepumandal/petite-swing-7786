@@ -8,15 +8,18 @@ import { BrowserRouter } from "react-router-dom";
 import { theme } from "./theme/theme";
 import { Provider } from "react-redux";
 import { store } from "./Store/Store";
+import HellobonsaiProvider from "./Context/HellobonsaiContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
+    <HellobonsaiProvider>
     <BrowserRouter>
       <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>
     </BrowserRouter>
+      </HellobonsaiProvider>
  </Provider>
 );
 
