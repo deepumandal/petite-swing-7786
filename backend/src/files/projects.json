@@ -1,0 +1,40 @@
+{
+    "projects":[
+        {
+            "name":"My Awesome Project 1",
+            "client":"Sample Client",
+            "start_date":"Aug 24, 2022",
+            "documents":{
+                "proposals":[],
+                "contract":[]
+            },
+            "invoices":{
+                "outstanding":"",
+                "overdue":"",
+                "paid":""
+            },
+            "notes":[],
+            "status":"active"
+        },
+        {
+            "name":"My Awesome Project 2",
+            "client":"Sample Client",
+           " start_date":"Aug 24, 2022",
+            "documents":{
+                "proposals":[{
+                    "name":"Extra animation effects"
+                }],
+                "contract":[{
+    
+                }]
+            },
+            "invoices":{
+                "outstanding":"",
+                "overdue":"",
+                "paid":""
+            },
+            "notes":[],
+            "status":"active"
+        }
+    ]
+}
