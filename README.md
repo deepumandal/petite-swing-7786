@@ -49,3 +49,66 @@ As part of our construct week for group project in Unit 5 at Masai School, we we
 
 ### Dashboard Page:-
 
+
+
+
+  <p class="c0"><span class="c3">Tools Used -</span></p>
+  <ul class="c2 lst-kix_qfofq4qcdhuv-0 start">
+    <li class="c7 li-bullet-0">
+      <span class="c5">Github for code collaboration.</span>
+    </li>
+    <li class="c8 li-bullet-0">
+      <span class="c5">Slack and Zoom for communication.</span>
+    </li>
+  </ul>
+  <p class="c0"><span class="c3">Learnings -</span></p>
+  <p class="c0">
+    <span class="c5"
+      >We all learned how a team works and how to efficiently communicate when
+      working in a team. Each one of us learned to push our limits and work hard
+      each day through all the problems we faced. Also, Each one of us learned
+      how to be solution-oriented and try different methods to solve the problem
+      rather than being stuck on that problem. Last, I would like to mention
+      that all of us did our very best to create this project and we are
+      thankful for the guidance and support our mentors provided us.</span
+    >
+  </p>
+  <p class="c0">
+    <span class="c12">Project link:</span
+    ><span class="c15"
+      ><a
+        class="c1"
+        href=""
+        >&nbsp;</a
+      ></span
+    >
+  </p>
+  <p class="c0">
+    <span class="c12">GitHub link:</span
+    ><span class="c15"
+      ><a
+        class="c1"
+        href="https://github.com/Deepumandal/petite-swing-7786"
+        >&nbsp;https://github.com/Deepumandal/petite-swing-7786</a
+      ></span
+    >
+  </p>
+  <p class="c10"><span class="c11"></span></p>
+  <p class="c10"><span class="c17"></span></p>
+  
+  # Getting Started with Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+
