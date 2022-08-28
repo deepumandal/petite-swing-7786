@@ -22,7 +22,7 @@ const ContractTemp = () => {
 
   const getData = () => {
     axios
-      .get("http://localhost:8000/contract")
+      .get("https://bonsai-backend-1782.herokuapp.com/contract")
       .then((r) => {
         // console.log(r.data);
         setConData(r.data);
@@ -33,7 +33,7 @@ const ContractTemp = () => {
   };
   const paginatedData = (page) => {
     axios
-      .get(`http://localhost:8000/contract?skip=${page}`)
+      .get(`https://bonsai-backend-1782.herokuapp.com/contract?skip=${page}`)
       .then((r) => {
         // console.log(r.data);
         setConData(r.data);
