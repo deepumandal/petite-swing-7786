@@ -48,6 +48,7 @@ As part of our construct week for group project in Unit 5 at Masai School, we we
 ![image](https://user-images.githubusercontent.com/101569259/187063531-a2fe4f50-429b-4fd3-a24e-56c1adef6918.png)
 
 ### Dashboard Page:-
+![image](https://user-images.githubusercontent.com/101569259/187068313-741cdbfb-25fe-4e87-a99d-6987ce95dc0c.png)
 
 
 
