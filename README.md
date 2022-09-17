@@ -1,10 +1,23 @@
-<h2 class="c13"
+<p class="c0">
+    <span class="c12">Project link:</span
+    ><span class="c15"
       ><a
         class="c1"
-        href="https://www.hellobonsai.com/"
-        >hellobonsai.com</a
-      ></h2
+        href="https://petite-swing-7786.vercel.app/"
+        >&nbsp;https://petite-swing-7786.vercel.app/</a
+      ></span
     >
+  </p>
+  <p class="c0">
+    <span class="c12">GitHub link:</span
+    ><span class="c15"
+      ><a
+        class="c1"
+        href="https://github.com/Deepumandal/petite-swing-7786"
+        >&nbsp;https://github.com/Deepumandal/petite-swing-7786</a
+      ></span
+    >
+  </p>
 
 
 Bonsai is building the global operating system for freelance work.The way the world works is changing.
@@ -74,26 +87,7 @@ As part of our construct week for group project in Unit 5 at Masai School, we we
       thankful for the guidance and support our mentors provided us.</span
     >
   </p>
-  <p class="c0">
-    <span class="c12">Project link:</span
-    ><span class="c15"
-      ><a
-        class="c1"
-        href="https://petite-swing-7786.vercel.app/"
-        >&nbsp;https://petite-swing-7786.vercel.app/</a
-      ></span
-    >
-  </p>
-  <p class="c0">
-    <span class="c12">GitHub link:</span
-    ><span class="c15"
-      ><a
-        class="c1"
-        href="https://github.com/Deepumandal/petite-swing-7786"
-        >&nbsp;https://github.com/Deepumandal/petite-swing-7786</a
-      ></span
-    >
-  </p>
+  
   <p class="c10"><span class="c11"></span></p>
   <p class="c10"><span class="c17"></span></p>
   
