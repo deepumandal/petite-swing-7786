@@ -75,7 +75,7 @@ const Withorwithout = () => {
             sm : "423px"
         }}
           src={
-            "https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/5e5fd7c602ca7c6c51feb665_ill_before_2n%20block.svg"
+            "https://assets-global.website-files.com/58868bcd2ef4daaf0f072900/5e5fd7c602ca7c9ed8feb675_ill_after_2nd%20block.svg"
           }
         />
       </GridItem>

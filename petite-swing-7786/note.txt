@@ -50,3 +50,4 @@ proximaparanova
             color: "#4c525a",
           }}
 
+npm install cors

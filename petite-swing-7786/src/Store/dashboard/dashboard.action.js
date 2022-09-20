@@ -80,7 +80,7 @@ const getItemsError = (err)=>{
 export const getProjects = ()=>(dispatch)=>{
     dispatch(getProjectsLoading());
 
-    return axios.get('http://localhost:8000/dashboard/projects')
+    return axios.get('https://bonsai-backend-1782.herokuapp.com/dashboard/projects')
     .then((res)=>dispatch(getProjectsSuccess(res.data.projects)))
     .catch((err)=>dispatch(getProjectError(err)))
 }
@@ -88,7 +88,7 @@ export const getProjects = ()=>(dispatch)=>{
 export const getCharts = ()=>(dispatch)=>{
     dispatch(getChartsLoading());
 
-    return axios.get('http://localhost:8000/dashboard/charts')
+    return axios.get('https://bonsai-backend-1782.herokuapp.com/dashboard/charts')
     .then((res)=>dispatch(getChartsSuccess(res.data.charts)))
     .catch((err)=>dispatch(getChartsError(err)))
 }
@@ -96,7 +96,7 @@ export const getCharts = ()=>(dispatch)=>{
 export const getCharts1 = ()=>(dispatch)=>{
     dispatch(getCharts1Loading());
 
-    return axios.get('http://localhost:8000/dashboard/charts1')
+    return axios.get('https://bonsai-backend-1782.herokuapp.com/dashboard/charts1')
     .then((res)=>dispatch(getCharts1Success(res.data.charts1)))
     .catch((err)=>dispatch(getCharts1Error(err)))
 }
@@ -104,7 +104,7 @@ export const getCharts1 = ()=>(dispatch)=>{
 export const getItems = ()=>(dispatch)=>{
     dispatch(getItemsLoading());
 
-    return axios.get('http://localhost:8000/dashboard/items')
+    return axios.get('https://bonsai-backend-1782.herokuapp.com/dashboard/items')
     .then((res)=>dispatch(getItemsSuccess(res.data.items)))
     .catch((err)=>dispatch(getItemsError(err)))
 }
